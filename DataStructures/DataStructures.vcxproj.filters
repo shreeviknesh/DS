@@ -18,5 +18,11 @@
     <ClInclude Include="includes\ArrayStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\Stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\utils\ListNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
