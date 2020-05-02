@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArrayStack.h">
+    <ClInclude Include="includes\ArrayStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

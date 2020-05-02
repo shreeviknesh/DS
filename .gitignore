@@ -7,6 +7,9 @@
 [Bb]in/
 [Bb]in-int/
 
+# Sample Project
+Sandbox/
+
 # User-specific files
 *.rsuser
 *.suo
