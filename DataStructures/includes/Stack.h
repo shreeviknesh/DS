@@ -1,16 +1,16 @@
 #pragma once
-#include "utils\ListNode.h"
+#include "utils\Node.h"
 #include <stdexcept>
 
 // Linked-list implementation of stack
 template <typename _Ty>
 class Stack {
 private:
-	ListNode<_Ty>* top_;
+	Node<_Ty>* top_;
 
 public:
 	Stack() : top_(nullptr) {}
-	Stack(ListNode<_Ty>* top) : top_(top) {}
+	Stack(Node<_Ty>* top) : top_(top) {}
 	Stack(const Stack<_Ty>& s) {
 		*top_ = *(s.top_);
 	}
@@ -26,8 +26,8 @@ public:
 
 	// Insert a value as top
 	void push(const _Ty value) {
-		ListNode<_Ty>* temp = top_;
-		top_ = new ListNode<_Ty>(value, temp);
+		Node<_Ty>* temp = top_;
+		top_ = new Node<_Ty>(value, temp);
 	}
 
 	// Pop the top value
@@ -38,7 +38,7 @@ public:
 			#endif
 				return;
 		}
-		ListNode<_Ty>* temp = top_;
+		Node<_Ty>* temp = top_;
 		top_ = top_->next();
 		delete temp;
 	}

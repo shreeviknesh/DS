@@ -148,7 +148,7 @@
   <ItemGroup>
     <ClInclude Include="includes\ArrayStack.h" />
     <ClInclude Include="includes\Stack.h" />
-    <ClInclude Include="includes\utils\ListNode.h" />
+    <ClInclude Include="includes\utils\Node.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="includes\includes.cpp" />

@@ -21,7 +21,7 @@
     <ClInclude Include="includes\Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\utils\ListNode.h">
+    <ClInclude Include="includes\utils\Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
