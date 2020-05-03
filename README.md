@@ -3,20 +3,24 @@ A C++ static library for implementations of the various Data Structures.
 
 Contents
 ----
-- [Data Structures Implemented](#data-structures-implemented)
-- [Usage](#usage)
+- [The Data Structures Implemented](#data-structures-implemented)
+- [Usage (in VisualStudio)](#usage)
 
 Data Structures Implemented
 ----
-- [x] `Stack.h` - Linked List Stack
-- [x] `ArrayStack.h` - Array Implementation of Stack
-- [ ] `LinkedList.h` - Linked List
-- [ ] `DoublyLinkedList.h` - Doubly Linked List
-- [ ] `Queue.h` - Queue
-- [ ] `ArrayQueue.h` - Array Implementation of Queue
-- [ ] `PriorityQueue.h` - Priority Queue
-- [ ] `Deque.h` - Double Ended Queue
-- [ ] `BST.h` - Binary Search Tree
+Given below is a list of Data Structures that are implemented (and soon to be implemented).
+
+|Implemented?|Data Structure|Header File|
+|:-:|:-:|:-:|
+|Yes|Linked List Implementation of Stack|`Stack.h`|
+|Yes|Array Implementation of Stack|`ArrayStack.h`|
+|No|Linked List|`LinkedList.h`|
+|No|Doubly Linked List|`DoublyLinkedList.h`|
+|No|Linked List Implementation of Queue|`Queue.h`|
+|No|Array Implementation of Queue|`ArrayQueue.h`|
+|No|Priority Queue|`PriorityQueue.h`|
+|No|Double Ended Queue|`Deque.h`|
+|No|Binary Search Tree|`BST.h`|
 
 Usage
 ----
