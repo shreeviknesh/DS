@@ -9,22 +9,19 @@ private:
 	ListNode<_Ty>* next_;
 
 public:
-	ListNode() {
-		value_ = _Ty();
-		next_ = nullptr;
-	}
-
-	ListNode(_Ty value, ListNode<_Ty>* next) : value_(value), next_(next) {}
-
+	ListNode() : value_(_Ty()), next_(nullptr) {}
+	ListNode(_Ty value, ListNode<_Ty>* next = nullptr) : value_(value), next_(next) {}
 	ListNode(const ListNode<_Ty>& ln) {
 		static_assert(std::is_copy_constructible<_Ty>::value, 
 			"Cannot copy because type is not copy constructible");
 		value_ = ln.value_;
-		next_ = ln.next_;
+		*next_ = *(ln.next_);
 	}
-
-	~ListNode() {
-		delete next_;
+	~ListNode() {}
+	ListNode<_Ty>& operator = (ListNode<_Ty>& ln) {
+		value_ = ln.value_;
+		*next_ = *(ln.next_);
+		return *this;
 	}
 
 	// getter for value

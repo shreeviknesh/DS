@@ -13,21 +13,18 @@ public:
 	ArrayStack() : top_(-1) {
 		static_assert(_MAX_SIZE > 0, "ArrayStack MAX_SIZE has to be positive non-zero integer");
 	}
-
 	ArrayStack(std::uint16_t top, _Ty data[_MAX_SIZE]) : top_(top) {
 		static_assert(top < _MAX_SIZE, "ArrayStack top cannot be greater than MAX_SIZE");
 		for (std::uint16_t i = 0; i <= top; i++) {
 			data_[i] = data[i];
 		}
 	}
-
 	ArrayStack(const ArrayStack<_Ty, _MAX_SIZE>& as) : top_(as.top_) {
 		static_assert(as.top_ < _MAX_SIZE, "ArrayStack top cannot be greater than MAX_SIZE");
 		for (std::uint16_t i = 0; i <= as.top_; i++) {
 			data_[i] = as.data_[i];
 		}
 	}
-
 	~ArrayStack() {
 		while (top_ >= 0) {
 			pop();

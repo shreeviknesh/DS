@@ -3,9 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-# Binaries
+# Binaries and intermediates
 [Bb]in/
 [Bb]in-int/
+[Ii]nt
 
 # Sample Project
 Sandbox/

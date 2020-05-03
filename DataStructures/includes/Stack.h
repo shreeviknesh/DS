@@ -11,7 +11,13 @@ private:
 public:
 	Stack() : top_(nullptr) {}
 	Stack(ListNode<_Ty>* top) : top_(top) {}
-	Stack(const Stack<_Ty>& s) : top_(s.top_) {}
+	Stack(const Stack<_Ty>& s) {
+		*top_ = *(s.top_);
+	}
+	Stack<_Ty>& operator = (const Stack<_Ty>& s) {
+		*top_ = *(s.top_);
+		return *this;
+	}
 	~Stack() {
 		while (top_ != nullptr) {
 			pop();
@@ -25,17 +31,16 @@ public:
 	}
 
 	// Pop the top value
-	_Ty pop() {
+	void pop() {
 		if (top_ == nullptr) {
 			#ifdef _DEBUG
 				throw std::out_of_range("Cannot pop: Stack is empty");
 			#endif
-				return _Ty();
+				return;
 		}
 		ListNode<_Ty>* temp = top_;
 		top_ = top_->next();
-		temp->next(nullptr);
-		return temp->value();
+		delete temp;
 	}
 
 	// Get the top value
