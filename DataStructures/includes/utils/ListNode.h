@@ -23,6 +23,10 @@ public:
 		next_ = ln.next_;
 	}
 
+	~ListNode() {
+		delete next_;
+	}
+
 	// getter for value
 	_Ty value() const { return value_; }
 

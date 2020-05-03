@@ -28,6 +28,12 @@ public:
 		}
 	}
 
+	~ArrayStack() {
+		while (top_ >= 0) {
+			pop();
+		}
+	}
+
 	// Insert a value as top
 	void push(const _Ty value) {
 		if (top_ == _MAX_SIZE - 1) {
@@ -45,7 +51,7 @@ public:
 			#ifdef _DEBUG
 				throw std::out_of_range("Cannot pop: ArrayStack is empty");
 			#endif
-			return;
+			return _Ty();
 		}
 		return data_[top_--];
 	}
@@ -56,13 +62,9 @@ public:
 			#ifdef _DEBUG
 				throw std::out_of_range("Cannot peek: ArrayStack is empty");
 			#endif
+			return _Ty();
 		}
 		return data_[top_];
-	}
-
-	// Get the value of top (index)
-	std::uint16_t top() const {
-		return top_;
 	}
 
 	// Get the MAX_SIZE of the ArrayStack
