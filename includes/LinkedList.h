@@ -186,6 +186,16 @@ public:
 		return true;
 	}
 
+	// Check if the LinkedList is empty?
+	bool isEmpty() const { return (m_head == nullptr); }
+
+	// Clear the elements of the LinkedList
+	void clear() {
+		while (!isEmpty()) {
+			remove();
+		}
+	}
+
 	// Set the pos-th element
 	void set(size_t pos, Type value) {
 		getNode(pos)->value = value;

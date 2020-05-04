@@ -38,22 +38,28 @@ public:
 		}
 	}
 
+	// Check if the stack is empty?
+	bool isEmpty() const { return (m_top == nullptr); }
+
 	// Insert a value as top
 	void push(const Type value) {
 		m_top = new Node<Type>(value, m_top);
 	}
 
 	// Pop the top value
-	void pop() {
+	Type pop() {
 		if (m_top == nullptr) {
 			#ifdef _DEBUG
 				throw std::out_of_range("Cannot pop: Stack is empty");
 			#endif
-			return;
+			return Type();
 		}
+
 		Node<Type>* temp = m_top;
-		m_top = m_top->next();
+		Type value = m_top->value;
+		m_top = m_top->next;
 		delete temp;
+		return value;
 	}
 
 	// Get the top value
@@ -64,6 +70,14 @@ public:
 			#endif
 			return Type();
 		}
-		return m_top->value();
+
+		return m_top->value;
+	}
+
+	// Clear the stack
+	void clear() {
+		while (!isEmpty()) {
+			pop();
+		}
 	}
 };
