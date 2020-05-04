@@ -2,41 +2,59 @@
 #include <type_traits>
 #include <string>
 
-template <typename _Ty>
+template <typename Type>
 class Node {
 private:
-	_Ty value_;
-	Node<_Ty>* next_;
+	Type m_value;
+	Node<Type>* m_next;
 
 public:
-	Node() : value_(_Ty()), next_(nullptr) {}
-	Node(_Ty value, Node<_Ty>* next = nullptr) : value_(value), next_(next) {}
-	Node(const Node<_Ty>& ln) {
-		static_assert(std::is_copy_constructible<_Ty>::value, 
+	Node() : m_value(Type()), m_next(nullptr) {}
+
+	Node(Type value, Node<Type>* next = nullptr) : m_value(value), m_next(next) {}
+
+	Node(const Node<Type>& ln) {
+		static_assert(std::is_copy_constructible<Type>::value,
 			"Cannot copy because type is not copy constructible");
-		value_ = ln.value_;
-		*next_ = *(ln.next_);
+
+		m_value = ln.m_value;
+		if (ln.m_next == nullptr) {
+			m_next = nullptr;
+		}
+		else {
+			*m_next = *(ln.m_next);
+		}
 	}
-	~Node() {}
-	Node<_Ty>& operator = (Node<_Ty>& ln) {
-		value_ = ln.value_;
-		*next_ = *(ln.next_);
+
+	Node<Type>& operator = (const Node<Type>& ln) {
+		static_assert(std::is_copy_constructible<Type>::value,
+			"Cannot copy because type is not copy constructible");
+
+		m_value = ln.m_value;
+		if (ln.m_next == nullptr) {
+			m_next = nullptr;
+		}
+		else {
+			*m_next = *(ln.m_next);
+		}
 		return *this;
 	}
 
+	~Node() {}
+
 	// getter for value
-	_Ty value() const { return value_; }
+	Type value() const { return m_value; }
 
 	// setter for value
-	void value(_Ty value__) {
-		value_ = value__;
+	void value(Type value__) {
+		m_value = value__;
 	}
 
 	// getter for next
-	Node<_Ty>* next() const { return next_; }
+	Node<Type>* next() const { return m_next; }
 
 	// setter for next
-	void next(Node<_Ty>* next__) {
-		next_ = next__;
+	void next(Node<Type>* next__) {
+		m_next = next__;
 	}
 };

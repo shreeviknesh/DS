@@ -1,72 +1,85 @@
 #pragma once
-#include <cstdint>
 #include <stdexcept>
+#include <cstdint>
+
+typedef size_t index;
 
 // Array implementation of stack 
-template <typename _Ty, size_t _MAX_SIZE>
+template <typename Type, index MaxSize>
 class ArrayStack {
 private:
-	std::uint16_t top_;
-	_Ty data_[_MAX_SIZE];
+	index m_top;
+	Type m_data[MaxSize];
 
 public:
-	ArrayStack() : top_(-1) {
-		static_assert(_MAX_SIZE > 0, "ArrayStack MAX_SIZE has to be positive non-zero integer");
+	ArrayStack() : m_top(-1) {
+		static_assert(MaxSize > 0, "ArrayStack MaxSize has to be positive non-zero integer");
 	}
-	ArrayStack(std::uint16_t top, _Ty data[_MAX_SIZE]) : top_(top) {
-		static_assert(top < _MAX_SIZE, "ArrayStack top cannot be greater than MAX_SIZE");
-		for (std::uint16_t i = 0; i <= top; i++) {
-			data_[i] = data[i];
+
+	ArrayStack(index top, Type data[MaxSize]) = delete;
+
+	ArrayStack(const ArrayStack<Type, MaxSize>& as) {
+		if (as.m_top > MaxSize) {
+			#ifdef _DEBUG
+				throw std::out_of_range("Top cannot be greater than MaxSize");
+			#endif
+			ArrayStack();
+		}
+		m_top = as.m_top;
+		for (index i = 0; i <= as.m_top; i++) {
+			m_data[i] = as.m_data[i];
 		}
 	}
-	ArrayStack(const ArrayStack<_Ty, _MAX_SIZE>& as) : top_(as.top_) {
-		static_assert(as.top_ < _MAX_SIZE, "ArrayStack top cannot be greater than MAX_SIZE");
-		for (std::uint16_t i = 0; i <= as.top_; i++) {
-			data_[i] = as.data_[i];
+
+	ArrayStack<Type, MaxSize>& operator =(const ArrayStack<Type, MaxSize>& as) {
+		m_top = as.m_top;
+		for (index i = 0; i <= as.m_top; i++) {
+			m_data[i] = as.m_data[i];
 		}
+		return *this;
 	}
-	~ArrayStack() {
-		while (top_ >= 0) {
+
+	~ArrayStack() { 
+		while (m_top > 0) {
 			pop();
 		}
 	}
 
 	// Insert a value as top
-	void push(const _Ty value) {
-		if (top_ == _MAX_SIZE - 1) {
+	void push(const Type value) {
+		if (m_top == MaxSize - 1) {
 			#ifdef _DEBUG
-				throw std::out_of_range("Cannot push: ArrayStack MAX_SIZE exceeded");
+				throw std::out_of_range("Cannot push: ArrayStack MaxSize exceeded");
 			#endif
 			return;
 		}
-		data_[++top_] = value;
+		m_data[++m_top] = value;
 	}
 
-	// Pop the top value
-	_Ty pop() {
-		if (top_ < 0) {
+	// Remove the top value
+	void pop() {
+		if (m_top < 0) {
 			#ifdef _DEBUG
 				throw std::out_of_range("Cannot pop: ArrayStack is empty");
 			#endif
-			return _Ty();
+			return;
 		}
-		return data_[top_--];
+		m_top--;
 	}
 	
-	// Get the top value
-	_Ty peek() const {
-		if (top_ < 0) {
+	// Return the top value
+	Type peek() const {
+		if (m_top < 0) {
 			#ifdef _DEBUG
 				throw std::out_of_range("Cannot peek: ArrayStack is empty");
 			#endif
-			return _Ty();
+			return Type();
 		}
-		return data_[top_];
+		return m_data[m_top];
 	}
 
-	// Get the MAX_SIZE of the ArrayStack
-	size_t size() const {
-		return _MAX_SIZE;
+	// Get the MaxSize of the ArrayStack
+	index size() const {
+		return MaxSize;
 	}
 };
-

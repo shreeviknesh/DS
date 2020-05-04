@@ -21,7 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{D5C76CEC-22EF-4F9D-AE16-E0FA63C34217}</ProjectGuid>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -107,6 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)includes\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +151,7 @@
     <ClInclude Include="includes\ArrayStack.h" />
     <ClInclude Include="includes\Stack.h" />
     <ClInclude Include="includes\utils\Node.h" />
+    <ClInclude Include="includes\LinkedList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="includes\includes.cpp" />

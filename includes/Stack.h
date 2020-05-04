@@ -3,54 +3,67 @@
 #include <stdexcept>
 
 // Linked-list implementation of stack
-template <typename _Ty>
+template <typename Type>
 class Stack {
 private:
-	Node<_Ty>* top_;
+	Node<Type>* m_top;
 
 public:
-	Stack() : top_(nullptr) {}
-	Stack(Node<_Ty>* top) : top_(top) {}
-	Stack(const Stack<_Ty>& s) {
-		*top_ = *(s.top_);
+	Stack() : m_top(nullptr) {}
+
+	Stack(Node<Type>* top) : m_top(top) {}
+
+	Stack(const Stack<Type>& s) {
+		if (s.m_top == nullptr) {
+			m_top = nullptr;
+		}
+		else {
+			*m_top = *(s.m_top);
+		}
 	}
-	Stack<_Ty>& operator = (const Stack<_Ty>& s) {
-		*top_ = *(s.top_);
+
+	Stack<Type>& operator = (const Stack<Type>& s) {
+		if (s.m_top == nullptr) {
+			m_top = nullptr;
+		}
+		else {
+			*m_top = *(s.m_top);
+		}
 		return *this;
 	}
+
 	~Stack() {
-		while (top_ != nullptr) {
+		while (m_top != nullptr) {
 			pop();
 		}
 	}
 
 	// Insert a value as top
-	void push(const _Ty value) {
-		Node<_Ty>* temp = top_;
-		top_ = new Node<_Ty>(value, temp);
+	void push(const Type value) {
+		m_top = new Node<Type>(value, m_top);
 	}
 
 	// Pop the top value
 	void pop() {
-		if (top_ == nullptr) {
+		if (m_top == nullptr) {
 			#ifdef _DEBUG
 				throw std::out_of_range("Cannot pop: Stack is empty");
 			#endif
-				return;
+			return;
 		}
-		Node<_Ty>* temp = top_;
-		top_ = top_->next();
+		Node<Type>* temp = m_top;
+		m_top = m_top->next();
 		delete temp;
 	}
 
 	// Get the top value
-	_Ty peek() const {
-		if (top_ == nullptr) {
+	Type peek() const {
+		if (m_top == nullptr) {
 			#ifdef _DEBUG
 				throw std::out_of_range("Cannot peek: Stack is empty");
 			#endif
-			return _Ty();
+			return Type();
 		}
-		return top_->value();
+		return m_top->value();
 	}
 };
