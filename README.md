@@ -12,7 +12,7 @@ Given below is a list of Data Structures that are implemented (and soon to be im
 
 |Implemented?|Data Structure|Header File|
 |:-:|:-:|:-:|
-|No|Linked List|`LinkedList.h`|
+|Yes|Linked List|`LinkedList.h`|
 |No|Doubly Linked List|`DoublyLinkedList.h`|
 |Yes|Linked List Implementation of Stack|`Stack.h`|
 |Yes|Array Implementation of Stack|`ArrayStack.h`|
