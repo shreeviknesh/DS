@@ -12,10 +12,10 @@ Given below is a list of Data Structures that are implemented (and soon to be im
 
 |Implemented?|Data Structure|Header File|
 |:-:|:-:|:-:|
-|Yes|Linked List Implementation of Stack|`Stack.h`|
-|Yes|Array Implementation of Stack|`ArrayStack.h`|
 |No|Linked List|`LinkedList.h`|
 |No|Doubly Linked List|`DoublyLinkedList.h`|
+|Yes|Linked List Implementation of Stack|`Stack.h`|
+|Yes|Array Implementation of Stack|`ArrayStack.h`|
 |No|Linked List Implementation of Queue|`Queue.h`|
 |No|Array Implementation of Queue|`ArrayQueue.h`|
 |No|Priority Queue|`PriorityQueue.h`|
@@ -27,7 +27,7 @@ Usage
 (As part of VisualStudio Solution)
 1. `git submodule add https://github.com/shreeviknesh/DS <path>` in your solution.
     - This will make updating the library in your solution easier.
-    - As an alternate, you can `git clone https://github.com/shreeviknesh/DS <path>` or download the source of this repository.
+    - As an alternative, you can `git clone https://github.com/shreeviknesh/DS <path>` or download the source of this repository.
 1. Open the shortcut menu for the executable project in your solution explorer, then choose *Add* > *Reference*.
 2. In the Add Reference dialog box, select check box DS and click OK.
 3. To reference the header files in your project, you must modify the include directories path. Open the shortcut menu for the executable project in your solution explorer, then choose *Properties*.
