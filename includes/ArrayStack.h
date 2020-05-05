@@ -1,5 +1,5 @@
 /*
- * This file is part of DS Static Library (https://github.com/shreeviknesh/DS).
+ * This file is part of the DS Library (https://github.com/shreeviknesh/DS).
  *
  * MIT License
  * 
