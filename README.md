@@ -12,15 +12,16 @@ Given below is a list of Data Structures that are implemented (and soon to be im
 
 |Implemented?|Data Structure|Header File|
 |:-:|:-:|:-:|
-|Yes|Linked List|`LinkedList.h`|
-|No|Doubly Linked List|`DoublyLinkedList.h`|
-|Yes|Linked List Implementation of Stack|`Stack.h`|
-|Yes|Array Implementation of Stack|`ArrayStack.h`|
-|No|Linked List Implementation of Queue|`Queue.h`|
-|No|Array Implementation of Queue|`ArrayQueue.h`|
-|No|Priority Queue|`PriorityQueue.h`|
-|No|Double Ended Queue|`Deque.h`|
-|No|Binary Search Tree|`BST.h`|
+|<img src="https://img.shields.io/badge/-No-red">|Array|`Array.h`|
+|<img src="https://img.shields.io/badge/-Yes-success">|Linked List|`LinkedList.h`|
+|<img src="https://img.shields.io/badge/-No-red">|Doubly Linked List|`DoublyLinkedList.h`|
+|<img src="https://img.shields.io/badge/-Yes-success">|Linked List Implementation of Stack|`Stack.h`|
+|<img src="https://img.shields.io/badge/-Yes-success">|Array Implementation of Stack|`ArrayStack.h`|
+|<img src="https://img.shields.io/badge/-No-red">|Linked List Implementation of Queue|`Queue.h`|
+|<img src="https://img.shields.io/badge/-No-red">|Array Implementation of Queue|`ArrayQueue.h`|
+|<img src="https://img.shields.io/badge/-No-red">|Priority Queue|`PriorityQueue.h`|
+|<img src="https://img.shields.io/badge/-No-red">|Double Ended Queue|`Deque.h`|
+|<img src="https://img.shields.io/badge/-No-red">|Binary Search Tree|`BST.h`|
 
 Usage
 ----
