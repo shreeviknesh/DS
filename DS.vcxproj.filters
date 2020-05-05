@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\utils">
-      <UniqueIdentifier>{9251e8c2-b142-4128-9177-1b3b1ca36ac7}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\ArrayStack.h">
@@ -24,10 +21,13 @@
     <ClInclude Include="includes\Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\utils\Node.h">
-      <Filter>Header Files\utils</Filter>
+    <ClInclude Include="includes\DoublyLinkedList.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\LinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

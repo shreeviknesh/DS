@@ -1,233 +1,234 @@
 #pragma once
-#include "utils\Node.h"
 #include <initializer_list>
 #include <stdexcept>
 
 template <typename Type>
 class LinkedList {
-private:
-	Node<Type>* m_head;
-	size_t m_size;
-
 public:
-	LinkedList() : m_head(nullptr), m_size(0) {}
+	class Node;
 
-	LinkedList(Node<Type>* head, size_t size) {
-		if (size < 0) {
-			#ifdef _DEBUG
-				throw std::out_of_range("LinkedList size cannot be negative");
-			#endif
-			m_head = nullptr;
-			m_size = 0;
-			return;
-		}
-
-		*m_head = *head;
-		m_size = size;
-	}
-
-	LinkedList(Type* array, size_t size) : m_head(nullptr), m_size(0) {
-		for (size_t i = 0; i < size; i++) {
-			insert(array[i]);
-		}
-	}
-	
-	LinkedList(std::initializer_list<Type> array) : m_head(nullptr), m_size(0) {
-		for (auto& val : array) {
-			insert(val);
-		}
-	}
-
-	~LinkedList() {
-		Node<Type>* temp;
-		while (m_head != nullptr) {
-			temp = m_head;
-			m_head = m_head->next;
-			delete temp;
-		}
-	}
+	LinkedList() : m_head(nullptr) {}
+	LinkedList(Node* head);
+	LinkedList(Type* values, size_t size);
+	LinkedList(std::initializer_list<Type> values);
+	~LinkedList();
 
 	// Get size of the LinkedList
-	size_t size() const {
-		return m_size;
-	}
+	size_t size() const; // { return m_size; }
 
 	// Insert an element in the beginning
-	void unshift(Type value) {
-		if (m_head == nullptr) {
-			m_head = new Node<Type>(value, nullptr);
-			m_size = 1;
-			return;
-		}
-
-		m_head = new Node<Type>(value, m_head);
-		m_size++;
-	}
+	void unshift(Type value);
 
 	// Insert an element at pos
-	void insert(size_t pos, Type value) {
-		if (pos < 0 || pos > m_size) {
-			#ifdef _DEBUG
-				throw std::out_of_range("LinkedList index out of bounds.");
-			#endif
-			return;
-		}
-
-		if (pos == 0) {
-			return unshift(value);
-			//return;
-		}
-
-		Node<Type>* current = m_head;
-		int iter = 1;
-
-		while (iter < pos) {
-			current = current->next;
-			iter++;
-		}
-		
-		Node<Type>* newNode = new Node<Type>(value, current->next);
-		current->next = newNode;
-		m_size++;
-	}
+	void insert(size_t pos, Type value);
 
 	// Insert an element at the end
-	void insert(Type value) {
-		if (m_head == nullptr) {
-			m_head = new Node<Type>(value, nullptr);
-			m_size++;
-			return;
-		}
-
-		insert(m_size, value);
-	}
+	void insert(Type value);
 
 	// Remove the head element
-	bool remove() {
-		if (m_head == nullptr) {
-			#ifdef _DEBUG
-				throw std::out_of_range("LinkedList is empty. Cannot remove.");
-			#endif
-			return false;
-		}
-
-		Node<Type>* temp = m_head;
-		m_head = m_head->next;
-		m_size--;
-		delete temp;
-		return true;
-	}
+	bool remove();
 
 	// Remove the first element with value = val
-	bool remove(Type val) {
-		if (m_head == nullptr) {
-			#ifdef _DEBUG
-				throw std::out_of_range("LinkedList is empty. Cannot remove.");
-			#endif
-			return false;
-		}
-		
-		if (m_head->value == val) {
-			Node<Type>* toDelete = m_head;
-			m_head = m_head->next;
-			delete toDelete;
-			m_size--;
-			return true;
-		}
-
-		if (m_head->next == nullptr) {
-			return false;
-		}
-
-		Node<Type>* prev = m_head;
-		Node<Type>* current = prev->next;
-
-		while (current != nullptr) {
-			if (current->value == val) {
-				prev->next = current->next;
-				delete current;
-				m_size--;
-				return true;
-			}
-
-			prev = current;
-			current = current->next;
-		}
-
-		return false;
-	}
-
-	// remove the pos-th element 
-	bool removeIndex(size_t pos) {
-		if (m_head == nullptr) {
-			#ifdef _DEBUG
-				throw std::out_of_range("LinkedList is empty. Cannot remove.");
-			#endif
-			return false;
-		}
-
-		if (pos < 0 || pos >= m_size) {
-			#ifdef _DEBUG
-				throw std::out_of_range("LinkedList index out of bounds.");
-			#endif
-			return false;
-		}
-
-		if (pos == 0) {
-			return remove();
-		}
-
-		Node<Type>* prev = getNode(pos - 1);
-		Node<Type>* element = getNode(pos);
-
-		prev->next = element->next;
-		delete element;
-		m_size--;
-		return true;
-	}
+	bool remove(Type val);
 
 	// Check if the LinkedList is empty?
 	bool isEmpty() const { return (m_head == nullptr); }
 
 	// Clear the elements of the LinkedList
-	void clear() {
-		while (!isEmpty()) {
-			remove();
-		}
-	}
-
-	// Set the pos-th element
-	void set(size_t pos, Type value) {
-		getNode(pos)->value = value;
-	}
-
-	// Get the node at pos in 0-based indexing
-	Node<Type>* getNode(size_t pos) const {
-		if (pos < 0 || pos >= m_size) {
-			#ifdef _DEBUG
-				throw std::out_of_range("LinkedList index out of bounds.");
-			#endif
-			return nullptr;
-		}
-
-		Node<Type>* current = m_head;
-		size_t iter = 0;
-
-		while (iter < pos) {
-			current = current->next;
-			iter++;
-		}
-
-		return current;
-	}
+	void clear() { ~LinkedList(); }
 
 	// Get the element at pos
-	Type get(size_t pos) const {
-		return getNode(pos)->value;
+	Type& get(size_t pos) const;
+
+	// values index operator
+	Type& operator [](size_t pos);
+
+	// Reverse the LinkedList
+	void reverse();
+
+private:
+	Node* m_head;
+};
+
+template<typename Type>
+class LinkedList<Type>::Node {
+public:
+	Type value;
+	Node* next;
+
+	Node() 
+		: value(Type()), next(nullptr) {}
+
+	Node(Type value_, Node* next_ = nullptr) 
+		: value(value_), next(next_) {}
+};
+
+template<typename Type>
+LinkedList<Type>::LinkedList(Node* head) {
+	if (head == nullptr) {
+		m_head = nullptr;
+	}
+	else {
+		*m_head = *head;
+	}
+}
+
+template<typename Type>
+LinkedList<Type>::LinkedList(Type* values, size_t size) : m_head(nullptr) {
+	for (size_t i = 0; i < size; i++) {
+		insert(values[i]);
+	}
+}
+
+template<typename Type>
+LinkedList<Type>::LinkedList(std::initializer_list<Type> values) : m_head(nullptr) {
+	for (auto& val : values) {
+		insert(val);
+	}
+}
+
+template<typename Type>
+LinkedList<Type>::~LinkedList() {
+	while (m_head != nullptr) {
+		Node* temp = m_head;
+		m_head = m_head->next;
+		delete temp;
+	}
+}
+
+template<typename Type>
+size_t LinkedList<Type>::size() const {
+	Node* current = m_head;
+	size_t count = 0;
+	while (current != nullptr) {
+		count++;
+		current = current->next;
+	}
+	return count;
+}
+
+template<typename Type>
+void LinkedList<Type>::unshift(Type value) {
+	if (m_head == nullptr) {
+		m_head = new Node(value, nullptr);
+		return;
 	}
 
-	// Array index operator
-	Type& operator [](size_t pos) {
-		return getNode(pos)->value;
+	m_head = new Node(value, m_head);
+}
+
+template<typename Type>
+void LinkedList<Type>::insert(size_t pos, Type value) {
+	if (pos < 0) {
+		#ifdef _DEBUG
+		throw std::out_of_range("LinkedList index out of bounds.");
+		#endif
+		return;
 	}
-};
+	if (pos == 0) {
+		return unshift(value);
+	}
+
+	Node* current = m_head;
+	int iter = 1;
+	while (iter < pos) {
+		current = current->next;
+		iter++;
+	}
+	current->next = new Node(value, current->next);
+}
+
+template<typename Type>
+void LinkedList<Type>::insert(Type value) {
+	if (m_head == nullptr) {
+		m_head = new Node(value, nullptr);
+		return;
+	}
+	if (m_head->next == nullptr) {
+		m_head->next = new Node(value, nullptr);
+		return;
+	}
+	Node* current = m_head;
+	while (current->next != nullptr) {
+		current = current->next;
+	}
+	current->next = new Node(value, nullptr);
+}
+
+template<typename Type>
+bool LinkedList<Type>::remove() {
+	if (m_head == nullptr) {
+		#ifdef _DEBUG
+		throw std::out_of_range("LinkedList is empty. Cannot remove.");
+		#endif
+		return false;
+	}
+	Node* temp = m_head;
+	m_head = m_head->next;
+	delete temp;
+	return true;
+}
+
+template<typename Type>
+bool LinkedList<Type>::remove(Type val) {
+	if (m_head == nullptr) {
+		#ifdef _DEBUG
+		throw std::out_of_range("LinkedList is empty. Cannot remove.");
+		#endif
+		return false;
+	}
+	if (m_head->value == val) {
+		remove();
+	}
+	Node* prev = m_head;
+	Node* current = prev->next;
+	while (current != nullptr) {
+		if (current->value == val) {
+			prev->next = current->next;
+			delete current;
+			return true;
+		}
+		prev = current;
+		current = current->next;
+	}
+	return false;
+}
+
+template<typename Type>
+Type& LinkedList<Type>::get(size_t pos) const {
+	if (pos < 0 || pos >= size()) {
+		#ifdef _DEBUG
+		throw std::out_of_range("LinkedList index out of bounds.");
+		#endif
+		return m_head->value;
+	}
+	Node* current = m_head;
+	size_t iter = 0;
+	while (iter < pos) {
+		current = current->next;
+		iter++;
+	}
+	return current->value;
+}
+
+template<typename Type>
+Type& LinkedList<Type>::operator [](size_t pos) {
+	return get(pos);
+}
+
+template<typename Type>
+void LinkedList<Type>::reverse() {
+	if (m_head == nullptr || m_head->next == nullptr) {
+		return;
+	}
+	Node* prev = nullptr;
+	Node* current = m_head;
+	Node* next = current->next;
+	while (current != nullptr) {
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	m_head = prev;
+}
