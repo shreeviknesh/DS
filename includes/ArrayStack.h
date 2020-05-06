@@ -28,8 +28,8 @@
 #include <stdexcept>
 #include <cstdint>
 
-// Array implementation of stack 
-template <typename Type, size_t MaxSize>
+// Array implementation of Stack 
+template <typename Type, size_t MaxSize = 32>
 class ArrayStack {
 private:
 	size_t m_top;
@@ -41,13 +41,16 @@ public:
 	ArrayStack<Type, MaxSize>& operator =(const ArrayStack<Type, MaxSize>& as);
 	~ArrayStack();
 
-	// Insert a value as top
+	// Check if the stack is empty
+	inline bool empty() const { return (m_top == -1); }
+
+	// Push a value to the top of the ArrayStack
 	void push(const Type value);
 
-	// Remove the top value
+	// Pop the top value of the ArrayStack
 	void pop();
 	
-	// Return the top value
+	// Get the top value of the ArrayStack
 	inline Type peek() const { return m_data[m_top]; }
 
 	// Get the MaxSize of the ArrayStack
@@ -102,12 +105,13 @@ void ArrayStack<Type, MaxSize>::push(const Type value) {
 }
 
 template <typename Type, size_t MaxSize>
-void ArrayStack<Type, MaxSize>::pop() {
+Type ArrayStack<Type, MaxSize>::pop() {
 	if (m_top < 0) {
 		#ifdef _DEBUG
 		throw std::out_of_range("Cannot pop: ArrayStack is empty");
 		#endif
-		return;
+		return Type();
 	}
 	m_top--;
+	return m_data[m_top + 1];
 }

@@ -28,6 +28,7 @@
 #include <initializer_list>
 #include <stdexcept>
 
+// Implementation of LinkedList
 template <typename Type>
 class LinkedList {
 public:
@@ -39,35 +40,33 @@ public:
 	LinkedList(std::initializer_list<Type> values);
 	~LinkedList();
 
-	// Get size of the LinkedList
+	// Get the size of the LinkedList
 	size_t size() const;
 
-	// Insert an element in the beginning
+	// Insert an element at the beginning
 	void unshift(Type value);
-
-	// Insert an element at pos
-	void insert(size_t pos, Type value);
 
 	// Insert an element at the end
 	void insert(Type value);
 
-	// Remove the head element
+	// Insert an element at pos
+	void insert(size_t pos, Type value);
+
+	// Remove the first element
 	bool remove();
 
-	// Remove the first element with value = val
+	// Remove the first element with value as val
 	bool remove(Type val);
 
-	// Check if the LinkedList is empty?
+	// Check if the LinkedList is empty
 	inline bool isEmpty() const { return (m_head == nullptr); }
 
-	// Clear the elements of the LinkedList
+	// Clear all the elements of the LinkedList
 	void clear() { ~LinkedList(); }
 
 	// Get the element at pos
 	Type& get(size_t pos) const;
-
-	// values index operator
-	Type& operator [](size_t pos);
+	Type& operator [](size_t pos) const { return get(pos); }
 
 	// Reverse the LinkedList
 	void reverse();
@@ -235,11 +234,6 @@ Type& LinkedList<Type>::get(size_t pos) const {
 		iter++;
 	}
 	return current->value;
-}
-
-template<typename Type>
-Type& LinkedList<Type>::operator [](size_t pos) {
-	return get(pos);
 }
 
 template<typename Type>

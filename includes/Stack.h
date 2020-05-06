@@ -27,7 +27,7 @@
 #pragma once
 #include <stdexcept>
 
-// Linked-list implementation of stack
+// LinkedList Implementation of Stack
 template <typename Type>
 class Stack {
 public:
@@ -38,23 +38,22 @@ public:
 	Stack(const Stack<Type>& s);
 	~Stack();
 
-	// Copy assignment operator
 	Stack<Type>& operator = (const Stack<Type>& s);
 
 	// Check if the stack is empty
-	inline bool isEmpty() const { return (m_top == nullptr); }
+	inline bool empty() const { return (m_top == nullptr); }
 
-	// Insert a value as top
+	// Push a value to the top of the Stack
 	void push(const Type value);
 
-	// Pop the top value
+	// Pop the top value of the Stack
 	Type pop();
 
-	// Get the top value
+	// Get the top value of the Stack
 	Type peek() const;
 
-	// Clear the stack
-	void clear();
+	// Clear all the elements of the Stack
+	void clear() { ~Stack(); }
 
 private:
 	Node* m_top;
@@ -126,9 +125,4 @@ Type Stack<Type>::peek() const {
 		return Type();
 	}
 	return m_top->value;
-}
-
-template <typename Type>
-void Stack<Type>::clear() {
-	~Stack();
 }
