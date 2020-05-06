@@ -14,7 +14,7 @@ Given below is a list of Data Structures that are implemented (and soon to be im
 |:-:|:-:|:-:|
 |<img src="https://img.shields.io/badge/-No-red">|Array|`Array.h`|
 |<img src="https://img.shields.io/badge/-Yes-success">|Linked List|`LinkedList.h`|
-|<img src="https://img.shields.io/badge/-No-red">|Doubly Linked List|`DoublyLinkedList.h`|
+|<img src="https://img.shields.io/badge/-Yes-success">|Doubly Linked List|`DoublyLinkedList.h`|
 |<img src="https://img.shields.io/badge/-Yes-success">|Linked List Implementation of Stack|`Stack.h`|
 |<img src="https://img.shields.io/badge/-Yes-success">|Array Implementation of Stack|`ArrayStack.h`|
 |<img src="https://img.shields.io/badge/-No-red">|Linked List Implementation of Queue|`Queue.h`|

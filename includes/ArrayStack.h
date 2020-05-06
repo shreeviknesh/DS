@@ -48,7 +48,7 @@ public:
 	void push(const Type value);
 
 	// Pop the top value of the ArrayStack
-	void pop();
+	Type pop();
 	
 	// Get the top value of the ArrayStack
 	inline Type peek() const { return m_data[m_top]; }
