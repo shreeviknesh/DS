@@ -45,7 +45,7 @@ public:
     Type* data() const { return m_data; }
 
     size_t empty() const { return m_last == -1; }
-    size_t size()  const { return (m_last + 1); }
+    size_t size() const { return m_last + 1; }
     size_t max_size() const { return N; }
 
     void fill(Type value) noexcept;
@@ -70,6 +70,7 @@ Array<Type, N>::Array(Type* data, size_t size) {
         m_data[m_last] = data[m_last];
         m_last++;
     }
+    m_last--;
 }
 
 template <typename Type, size_t N>
@@ -79,6 +80,7 @@ Array<Type, N>::Array(std::initializer_list<Type> data) {
     for (auto it = data.begin(); it != data.end() && m_last < N; it++) {
         m_data[m_last++] = *it;
     }
+    m_last--;
 }
 
 template <typename Type, size_t N>
@@ -89,6 +91,7 @@ Array<Type, N>::Array(const Array<Type, N>& array) {
         m_data[m_last] = array[m_last];
         m_last++;
     }
+    m_last--;
 }
 
 template <typename Type, size_t N>
@@ -134,4 +137,55 @@ void Array<Type, N>::swap(size_t pos1, size_t pos2) noexcept {
     Type temp = this->at(pos1);
     this->at(pos1) = this->at(pos2);
     this->at(pos2) = temp;
+}
+
+template <typename Type, size_t N>
+bool operator == (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+    for (size_t i = 0; i < array1.size(); i++) {
+        if (array1[i] != array2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+template <typename Type, size_t N>
+bool operator != (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+    return !(array1 == array2);
+}
+
+template <typename Type, size_t N>
+bool operator < (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+    for (size_t i = 0; i < array1.size(); i++) {
+        if (array1[i] > array2[i]) {
+            return false;
+        }
+        else if (array1[i] < array2[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+template <typename Type, size_t N>
+bool operator <= (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+    for (size_t i = 0; i < array1.size(); i++) {
+        if (array1[i] > array2[i]) {
+            return false;
+        }
+        else if (array1[i] < array2[i]) {
+            return true;
+        }
+    }
+    return true;
+}
+
+template <typename Type, size_t N>
+bool operator > (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+    return !(array1 <= array2);
+}
+
+template <typename Type, size_t N>
+bool operator >= (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+    return !(array1 < array2);
 }
