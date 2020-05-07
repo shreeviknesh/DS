@@ -35,34 +35,34 @@ public:
 	class Node;
 
 	LinkedList() : m_head(nullptr) {}
-	LinkedList(Node*);
-	LinkedList(Type*, size_t);
-	LinkedList(std::initializer_list<Type>);
+	LinkedList(Node* head);
+	LinkedList(Type* values, size_t size);
+	LinkedList(std::initializer_list<Type> values);
 	~LinkedList();
 
 	size_t size() const;
 	inline bool empty() const { return (m_head == nullptr); }
 
 	// Insert an element at the beginning
-	void unshift(Type);
+	void unshift(Type value);
 
 	// Insert an element at the end
-	void insert(Type);
+	void insert(Type value);
 
 	// Insert an element at pos
-	void insert(size_t, Type);
+	void insert(size_t pos, Type value);
 
 	// Remove the first element
 	bool remove();
 
 	// Remove the first element with value as val
-	bool remove(Type);
+	bool remove(Type value);
 
 	// Clear all the elements of the LinkedList
 	void clear() { ~LinkedList(); }
 
 	// Get the element at pos
-	Type& get(size_t) const;
+	Type& get(size_t pos) const;
 	Type& operator [](size_t pos) const { return get(pos); }
 
 	// Reverse the LinkedList

@@ -1,5 +1,5 @@
-#include "ArrayStack.h"
-#include "Stack.h"
+#include "Array.h"
 #include "LinkedList.h"
 #include "DoublyLinkedList.h"
-#include "Array.h"
+#include "Stack.h"
+#include "ArrayStack.h"

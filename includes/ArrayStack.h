@@ -33,15 +33,15 @@ template <typename Type, size_t MaxSize = 32>
 class ArrayStack {
 public:
 	ArrayStack();
-	ArrayStack(const ArrayStack<Type, MaxSize>&);
-	ArrayStack<Type, MaxSize>& operator = (const ArrayStack<Type, MaxSize>&);
+	ArrayStack(const ArrayStack<Type, MaxSize>& as);
+	ArrayStack<Type, MaxSize>& operator = (const ArrayStack<Type, MaxSize>& as);
 	~ArrayStack();
 
 	// Check if the stack is empty
 	inline bool empty() const { return (m_top == -1); }
 
 	// Push a value to the top of the ArrayStack
-	void push(const Type);
+	void push(const Type value);
 
 	// Pop the top value of the ArrayStack
 	Type pop();

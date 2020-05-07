@@ -153,6 +153,7 @@
     <ClInclude Include="includes\LinkedList.h" />
     <ClInclude Include="includes\Stack.h" />
     <ClInclude Include="includes\DoublyLinkedList.h" />
+    <ClInclude Include="includes\Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="includes\includes.cpp" />

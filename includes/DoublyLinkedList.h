@@ -34,26 +34,26 @@ public:
 	class Node;
 
 	DoublyLinkedList();
-	DoublyLinkedList(Type[], size_t);
-	DoublyLinkedList(std::initializer_list<Type>);
+	DoublyLinkedList(Type values[], size_t size);
+	DoublyLinkedList(std::initializer_list<Type> values);
 	~DoublyLinkedList();
 
 	inline bool empty() const { return (m_head == nullptr); }
 	inline Node* head() const { return m_head; }
 	inline Node* tail() const { return m_tail; }
 
-	void insert(Type);
-	void unshift(Type);
-	void insertBefore(Node*, Type);
-	void insertAfter(Node*, Type);
+	void insert(Type value);
+	void unshift(Type value);
+	void insertBefore(Node* node, Type value);
+	void insertAfter(Node* node, Type value);
 
 	Type getHead() const;
 	Type getTail() const;
 
 	bool removeHead();
 	bool removeTail();
-	bool remove(DoublyLinkedList<Type>::Node*);
-	bool remove(Type);
+	bool remove(DoublyLinkedList<Type>::Node* node);
+	bool remove(Type value);
 
 private:
 	Node* m_head;

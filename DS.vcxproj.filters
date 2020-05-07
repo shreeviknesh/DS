@@ -30,6 +30,9 @@
     <ClInclude Include="includes\Array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\Vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="includes\includes.cpp">

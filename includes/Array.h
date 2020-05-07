@@ -30,19 +30,15 @@
 
 template <typename Type, size_t N>
 class Array {
-private:
-    Type* m_data;
-    size_t m_last;
-
 public:
     Array();
-    Array(Type*, size_t);
-    Array(std::initializer_list<Type>);
-    Array(const Array<Type, N>&);
+    Array(Type* data, size_t size);
+    Array(std::initializer_list<Type> data);
+    Array(const Array<Type, N>& array);
     ~Array();
     Array& operator = (const Array&);
 
-    Type& at(size_t) const;
+    Type& at(size_t pos) const;
     Type& operator [] (size_t pos) const { return m_data[pos]; }
     Type& front() const { return m_data[0]; }
     Type& back() const { return m_data[m_last]; }
@@ -52,8 +48,12 @@ public:
     size_t size()  const { return (m_last + 1); }
     size_t max_size() const { return N; }
 
-    void fill(Type) noexcept;
-    void swap(size_t, size_t) noexcept;
+    void fill(Type value) noexcept;
+    void swap(size_t pos1, size_t pos2) noexcept;
+
+private:
+    Type* m_data;
+    size_t m_last;
 };
 
 template <typename Type, size_t N>
