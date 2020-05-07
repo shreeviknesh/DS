@@ -27,6 +27,7 @@
 #pragma once
 #include <initializer_list>
 #include <stdexcept>
+#include <memory>
 
 template <typename Type, size_t N>
 class Array {
@@ -42,7 +43,7 @@ public:
     Type& operator [] (size_t pos) const { return m_data[pos]; }
     Type& front() const { return m_data[0]; }
     Type& back() const { return m_data[m_last]; }
-    Type* data() const { return m_data; }
+    Type* data() const { return m_data.get(); }
 
     size_t empty() const { return m_last == -1; }
     size_t size() const { return m_last + 1; }
@@ -52,19 +53,19 @@ public:
     void swap(size_t pos1, size_t pos2) noexcept;
 
 private:
-    Type* m_data;
+    std::unique_ptr<Type[]> m_data;
     size_t m_last;
 };
 
 template <typename Type, size_t N>
 Array<Type, N>::Array() : m_last(-1) {
-    m_data = new Type[N];
+    m_data = std::make_unique<Type[]>(N);
     static_assert(N > 0, "Array size cannot be 0 or negatize");
 }
 
 template <typename Type, size_t N>
 Array<Type, N>::Array(Type* data, size_t size) {
-    m_data = new Type[N];
+    m_data = std::make_unique<Type[]>(N);
     m_last = 0;
     while (m_last < size && m_last < N) {
         m_data[m_last] = data[m_last];
@@ -75,7 +76,7 @@ Array<Type, N>::Array(Type* data, size_t size) {
 
 template <typename Type, size_t N>
 Array<Type, N>::Array(std::initializer_list<Type> data) {
-    m_data = new Type[N];
+    m_data = std::make_unique<Type[]>(N);
     m_last = 0;
     for (auto it = data.begin(); it != data.end() && m_last < N; it++) {
         m_data[m_last++] = *it;
@@ -85,7 +86,7 @@ Array<Type, N>::Array(std::initializer_list<Type> data) {
 
 template <typename Type, size_t N>
 Array<Type, N>::Array(const Array<Type, N>& array) {
-    m_data = new Type[N];
+    m_data = std::make_unique<Type[]>(N);
     m_last = 0;
     while (m_last <= array.m_last) {
         m_data[m_last] = array[m_last];
@@ -96,16 +97,13 @@ Array<Type, N>::Array(const Array<Type, N>& array) {
 
 template <typename Type, size_t N>
 Array<Type, N>::~Array() {
-    if (m_last != -1) {
-        delete[] m_data;
-        m_data = nullptr;
-        m_last = -1;
-    }
+    m_data.reset();
+    m_last = -1;
 }
 
 template <typename Type, size_t N>
 Array<Type, N>& Array<Type, N>::operator = (const Array& array) {
-    m_data = new Type[N];
+    m_data = std::make_unique<Type[]>(N);
     m_last = 0;
     while (m_last <= array.m_last) {
         m_data[m_last] = array[m_last];
@@ -134,9 +132,9 @@ void Array<Type, N>::fill(Type value) noexcept {
 
 template <typename Type, size_t N>
 void Array<Type, N>::swap(size_t pos1, size_t pos2) noexcept {
-    Type temp = this->at(pos1);
-    this->at(pos1) = this->at(pos2);
-    this->at(pos2) = temp;
+    Type temp = at(pos1);
+    at(pos1) = at(pos2);
+    at(pos2) = temp;
 }
 
 template <typename Type, size_t N>
