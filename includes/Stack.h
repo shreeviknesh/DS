@@ -44,7 +44,7 @@ public:
 	inline bool empty() const { return (m_top == nullptr); }
 
 	// Push a value to the top of the Stack
-	void push(const Type value);
+	void push(const Type);
 
 	// Pop the top value of the Stack
 	Type pop();

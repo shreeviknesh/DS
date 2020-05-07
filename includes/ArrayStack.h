@@ -31,10 +31,6 @@
 // Array implementation of Stack 
 template <typename Type, size_t MaxSize = 32>
 class ArrayStack {
-private:
-	size_t m_top;
-	Type m_data[MaxSize];
-
 public:
 	ArrayStack();
 	ArrayStack(const ArrayStack<Type, MaxSize>& as);
@@ -55,6 +51,11 @@ public:
 
 	// Get the MaxSize of the ArrayStack
 	inline size_t size() const { return MaxSize; }
+
+
+private:
+	size_t m_top;
+	Type m_data[MaxSize];
 };
 
 template <typename Type, size_t MaxSize>

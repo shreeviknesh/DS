@@ -40,32 +40,29 @@ public:
 	LinkedList(std::initializer_list<Type> values);
 	~LinkedList();
 
-	// Get the size of the LinkedList
 	size_t size() const;
+	inline bool empty() const { return (m_head == nullptr); }
 
 	// Insert an element at the beginning
-	void unshift(Type value);
+	void unshift(Type);
 
 	// Insert an element at the end
-	void insert(Type value);
+	void insert(Type);
 
 	// Insert an element at pos
-	void insert(size_t pos, Type value);
+	void insert(size_t, Type);
 
 	// Remove the first element
 	bool remove();
 
 	// Remove the first element with value as val
-	bool remove(Type val);
-
-	// Check if the LinkedList is empty
-	inline bool isEmpty() const { return (m_head == nullptr); }
+	bool remove(Type);
 
 	// Clear all the elements of the LinkedList
 	void clear() { ~LinkedList(); }
 
 	// Get the element at pos
-	Type& get(size_t pos) const;
+	Type& get(size_t) const;
 	Type& operator [](size_t pos) const { return get(pos); }
 
 	// Reverse the LinkedList

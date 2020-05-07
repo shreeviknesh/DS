@@ -42,18 +42,18 @@ public:
 	inline Node* head() const { return m_head; }
 	inline Node* tail() const { return m_tail; }
 
-	void insert(Type value); // end
-	void unshift(Type value); // beginning
-	void insertBefore(Node* node, Type value);
-	void insertAfter(Node* node, Type value);
+	void insert(Type);
+	void unshift(Type);
+	void insertBefore(Node*, Type);
+	void insertAfter(Node*, Type);
 
 	Type getHead() const;
 	Type getTail() const;
 
 	bool removeHead();
 	bool removeTail();
-	bool remove(DoublyLinkedList<Type>::Node* node);
-	bool remove(Type value);
+	bool remove(DoublyLinkedList<Type>::Node*);
+	bool remove(Type);
 
 private:
 	Node* m_head;
