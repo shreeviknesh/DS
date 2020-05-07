@@ -12,7 +12,7 @@ Given below is a list of Data Structures that are implemented (and soon to be im
 
 |Implemented?|Data Structure|Header File|
 |:-:|:-:|:-:|
-|<img src="https://img.shields.io/badge/-No-FF4136">|Array|`Array.h`|
+|<img src="https://img.shields.io/badge/-Yes-2ECC40">|Array|`Array.h`|
 |<img src="https://img.shields.io/badge/-Yes-2ECC40">|Linked List|`LinkedList.h`|
 |<img src="https://img.shields.io/badge/-Yes-2ECC40">|Doubly Linked List|`DoublyLinkedList.h`|
 |<img src="https://img.shields.io/badge/-Yes-2ECC40">|Linked List Implementation of Stack|`Stack.h`|
