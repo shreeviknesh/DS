@@ -34,8 +34,8 @@ public:
 	class Node;
 
 	DoublyLinkedList();
-	DoublyLinkedList(Type values[], size_t size);
-	DoublyLinkedList(std::initializer_list<Type> values);
+	DoublyLinkedList(Type[], size_t);
+	DoublyLinkedList(std::initializer_list<Type>);
 	~DoublyLinkedList();
 
 	inline bool empty() const { return (m_head == nullptr); }

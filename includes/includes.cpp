@@ -2,3 +2,4 @@
 #include "Stack.h"
 #include "LinkedList.h"
 #include "DoublyLinkedList.h"
+#include "Array.h"

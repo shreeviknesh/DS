@@ -35,9 +35,9 @@ public:
 	class Node;
 
 	LinkedList() : m_head(nullptr) {}
-	LinkedList(Node* head);
-	LinkedList(Type* values, size_t size);
-	LinkedList(std::initializer_list<Type> values);
+	LinkedList(Node*);
+	LinkedList(Type*, size_t);
+	LinkedList(std::initializer_list<Type>);
 	~LinkedList();
 
 	size_t size() const;
