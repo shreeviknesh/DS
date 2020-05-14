@@ -38,7 +38,8 @@ public:
 	LinkedList(Node* head);
 	LinkedList(Type* values, size_t size);
 	LinkedList(std::initializer_list<Type> values);
-	~LinkedList();
+	LinkedList(const LinkedList<Type>& ll);
+	~LinkedList() { clear(); }
 
 	size_t size() const;
 	inline bool empty() const { return (m_head == nullptr); }
@@ -59,7 +60,7 @@ public:
 	bool remove(Type value);
 
 	// Clear all the elements of the LinkedList
-	void clear() { ~LinkedList(); }
+	void clear();
 
 	// Get the element at pos
 	Type& get(size_t pos) const;
@@ -110,11 +111,12 @@ LinkedList<Type>::LinkedList(std::initializer_list<Type> values) : m_head(nullpt
 }
 
 template<typename Type>
-LinkedList<Type>::~LinkedList() {
-	while (m_head != nullptr) {
-		Node* temp = m_head;
-		m_head = m_head->next;
-		delete temp;
+LinkedList<Type>::LinkedList(const LinkedList<Type>& ll) {
+	if (ll.m_head == nullptr) {
+		m_head = nullptr;
+	}
+	else {
+		*m_head = *(ll.m_head);
 	}
 }
 
@@ -214,6 +216,15 @@ bool LinkedList<Type>::remove(Type val) {
 		current = current->next;
 	}
 	return false;
+}
+
+template<typename Type>
+void LinkedList<Type>::clear() {
+	while (m_head != nullptr) {
+		Node* temp = m_head;
+		m_head = m_head->next;
+		delete temp;
+	}
 }
 
 template<typename Type>

@@ -52,7 +52,6 @@ public:
 	// Get the MaxSize of the ArrayStack
 	inline size_t size() const { return MaxSize; }
 
-
 private:
 	size_t m_top;
 	Type m_data[MaxSize];

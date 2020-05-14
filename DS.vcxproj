@@ -151,6 +151,7 @@
     <ClInclude Include="includes\Array.h" />
     <ClInclude Include="includes\ArrayStack.h" />
     <ClInclude Include="includes\LinkedList.h" />
+    <ClInclude Include="includes\LLStack.h" />
     <ClInclude Include="includes\Stack.h" />
     <ClInclude Include="includes\DoublyLinkedList.h" />
     <ClInclude Include="includes\Vector.h" />
