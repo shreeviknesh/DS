@@ -4,3 +4,4 @@
 #include "Stack.h"
 #include "ArrayStack.h"
 #include "LLStack.h"
+#include "BST.h"

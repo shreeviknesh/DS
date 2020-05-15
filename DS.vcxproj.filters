@@ -36,6 +36,9 @@
     <ClInclude Include="includes\LLStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\BST.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="includes\includes.cpp">
