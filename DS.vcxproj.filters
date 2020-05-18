@@ -36,7 +36,7 @@
     <ClInclude Include="includes\LLStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\BST.h">
+    <ClInclude Include="includes\Queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

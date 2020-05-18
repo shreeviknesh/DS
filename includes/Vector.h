@@ -143,6 +143,11 @@ Type& Vector<Type>::get(size_t pos) const {
 
 template<typename Type>
 void Vector<Type>::reserve(size_t size) {
+    if (m_last == -1) {
+        m_data.reset();
+        m_data = std::make_unique<Type[]>(size);
+        return;
+    }
     Type* values = m_data.release();
     m_data = std::make_unique<Type[]>(size);
     m_size = size;
