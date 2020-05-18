@@ -36,7 +36,7 @@ public:
 	DoublyLinkedList();
 	DoublyLinkedList(Type values[], size_t size);
 	DoublyLinkedList(std::initializer_list<Type> values);
-	~DoublyLinkedList();
+	~DoublyLinkedList() { clear(); }
 
 	inline bool empty() const { return (m_head == nullptr); }
 	inline Node* head() const { return m_head; }
@@ -54,6 +54,8 @@ public:
 	bool removeTail();
 	bool remove(DoublyLinkedList<Type>::Node* node);
 	bool remove(Type value);
+
+	void clear();
 
 private:
 	Node* m_head;
@@ -90,13 +92,6 @@ DoublyLinkedList<Type>::DoublyLinkedList(std::initializer_list<Type> values) {
 	DoublyLinkedList();
 	for (Type val : values) {
 		insert(val);
-	}
-}
-
-template <typename Type>
-DoublyLinkedList<Type>::~DoublyLinkedList() {
-	while (m_head != nullptr) {
-		removeHead();
 	}
 }
 
@@ -261,4 +256,11 @@ bool DoublyLinkedList<Type>::remove(Type value) {
 		current = current->next;
 	}
 	return false;
+}
+
+template<typename Type>
+void DoublyLinkedList<Type>::clear() {
+	while (m_head != nullptr) {
+		removeHead();
+	}
 }
