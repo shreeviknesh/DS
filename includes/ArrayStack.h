@@ -26,7 +26,6 @@
 
 #pragma once
 #include <stdexcept>
-#include <cstdint>
 
 // Array implementation of Stack 
 template <typename Type, size_t MaxSize = 32>
