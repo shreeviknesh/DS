@@ -116,6 +116,13 @@ LinkedList<Type>::LinkedList(const LinkedList<Type>& ll) {
 		m_head = nullptr;
 	}
 	else {
+		if (ll.m_head == nullptr) {
+			m_head = nullptr;
+			return;
+		} 
+		if (m_head == nullptr) {
+			m_head = new Node();
+		}
 		*m_head = *(ll.m_head);
 	}
 }

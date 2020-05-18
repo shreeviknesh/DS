@@ -152,6 +152,7 @@
     <ClInclude Include="includes\ArrayQueue.h" />
     <ClInclude Include="includes\ArrayStack.h" />
     <ClInclude Include="includes\LinkedList.h" />
+    <ClInclude Include="includes\LLQueue.h" />
     <ClInclude Include="includes\LLStack.h" />
     <ClInclude Include="includes\Queue.h" />
     <ClInclude Include="includes\Stack.h" />

@@ -32,7 +32,7 @@ template <typename Type>
 class LLStack {
 public:
     LLStack() { m_list.clear(); }
-    LLStack(const LLStack<Type>& lls) { m_list(lls); }
+    LLStack(const LLStack<Type>& lls) : m_list(lls.m_list) {}
     ~LLStack() { clear(); }
 
     inline bool empty() const { return m_list.empty(); }

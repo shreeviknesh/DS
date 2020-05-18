@@ -31,6 +31,16 @@ template <typename Type>
 class LLQueue {
 public:
     LLQueue() { m_list.clear(); }
+    LLQueue(const LLQueue<Type>& llq) = delete;
+    ~LLQueue() { clear(); }
+
+    inline Type front() const { return m_list.getHead(); }
+    inline Type back() const { return m_list.getTail(); }
+
+    inline bool empty() const { return m_list.empty(); }
+    void push(const Type value) { m_list.insert(value); }
+    bool pop() { return m_list.removeHead(); }
+    void clear() { m_list.clear(); }
 
 private:
     DoublyLinkedList<Type> m_list;
