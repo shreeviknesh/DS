@@ -25,5 +25,58 @@
 */
 
 #pragma once
-#include <initializer_list>
+#include <stdexcept>
 
+template<typename Type, size_t MaxSize = 32>
+class ArrayQueue {
+public:
+    ArrayQueue() : m_back(-1) {}
+    ArrayQueue(const ArrayQueue<Type, MaxSize>& queue);
+    ~ArrayQueue() { clear(); }
+
+    inline bool empty() const { return (m_back == -1); }
+    inline size_t size() const { return (m_back + 1); }
+       
+    inline Type front() const { return m_data[0]; }
+    inline Type back() const { return m_data[m_back]; }
+
+    void push(Type value);
+    Type pop();
+    void clear() { m_back = -1; }
+
+private:
+    Type m_data[MaxSize];
+    size_t m_back;
+};
+
+template<typename Type, size_t MaxSize>
+ArrayQueue<Type, MaxSize>::ArrayQueue(const ArrayQueue<Type, MaxSize>& queue) {
+    for (size_t i = 0; i <= queue.m_back; i++) {
+        m_data[i] = queue.m_data[i];
+    }
+    m_back = queue.m_back;
+}
+
+template<typename Type, size_t MaxSize>
+void ArrayQueue<Type, MaxSize>::push(Type value) {
+    if (m_back == MaxSize - 1) {
+        #ifdef _DEBUG
+        throw std::out_of_range("Queue is full.");
+        #endif // _DEBUG
+        return;
+    }
+    m_data[++m_back] = value;
+}
+
+template<typename Type, size_t MaxSize>
+Type ArrayQueue<Type, MaxSize>::pop() {
+    if (m_back == -1) {
+        return Type();
+    }
+    Type returnValue = m_data[0];
+    for (size_t i = 0; i < m_back; i++) {
+        m_data[i] = m_data[i + 1];
+    }
+    m_back--;
+    return returnValue;
+}

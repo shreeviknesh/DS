@@ -78,6 +78,9 @@ class Queue<Type>::Node {
 
 template<typename Type>
 Queue<Type>::Queue(std::initializer_list<Type> values) {
+    m_size = 0;
+    m_front = nullptr;
+    m_rear = nullptr;
     if (values.size() == 0) {
         m_front = nullptr;
         m_rear = nullptr;
