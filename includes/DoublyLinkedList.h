@@ -80,16 +80,14 @@ template <typename Type>
 DoublyLinkedList<Type>::DoublyLinkedList() : m_head(nullptr), m_tail(nullptr) {}
 
 template <typename Type>
-DoublyLinkedList<Type>::DoublyLinkedList(Type values[], size_t size) {
-	DoublyLinkedList();
+DoublyLinkedList<Type>::DoublyLinkedList(Type values[], size_t size) : m_head(nullptr), m_tail(nullptr) {
 	for (size_t i = 0; i < size; i++) {
 		insert(values[i]);
 	}
 }
 
 template <typename Type>
-DoublyLinkedList<Type>::DoublyLinkedList(std::initializer_list<Type> values) {
-	DoublyLinkedList();
+DoublyLinkedList<Type>::DoublyLinkedList(std::initializer_list<Type> values) : m_head(nullptr), m_tail(nullptr) {
 	for (Type val : values) {
 		insert(val);
 	}

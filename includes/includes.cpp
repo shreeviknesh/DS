@@ -5,5 +5,7 @@
 #include "ArrayStack.h"
 #include "LLStack.h"
 #include "Queue.h"
+#include "ArrayQueue.h"
 #include "LLQueue.h"
 #include "PriorityQueue.h"
+#include "Deque.h"
