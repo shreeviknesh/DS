@@ -47,6 +47,9 @@ public:
 	void insertBefore(Node* node, Type value);
 	void insertAfter(Node* node, Type value);
 
+	// Inserts a value such that the list is in ascending order
+	void priorityInsert(Type value);
+
 	Type getHead() const;
 	Type getTail() const;
 
@@ -153,6 +156,23 @@ void DoublyLinkedList<Type>::insertAfter(Node* node, Type value) {
 	node->next = newNode;
 	newNode->prev = node;
 	newNode->next->prev = newNode;
+}
+
+template<typename Type>
+void DoublyLinkedList<Type>::priorityInsert(Type value) {
+	if (empty()) {
+		unshift(value);
+		return;
+	}
+	Node* temp = m_head;
+	while (temp != nullptr && temp->value < value) {
+		temp = temp->next;
+	}
+	if (temp == nullptr) {
+		insertAfter(m_tail, value);
+		return;
+	}
+	insertBefore(temp, value);
 }
 
 template <typename Type>
