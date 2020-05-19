@@ -36,12 +36,25 @@ public:
 
     inline Type front() const { return m_list.getHead(); }
     inline Type back() const { return m_list.getTail(); }
-
     inline bool empty() const { return m_list.empty(); }
+
     void push(const Type value) { m_list.insert(value); }
-    bool pop() { return m_list.removeHead(); }
+    Type pop();
     void clear() { m_list.clear(); }
 
 private:
     DoublyLinkedList<Type> m_list;
 };
+
+template<typename Type>
+Type LLQueue<Type>::pop() {
+    if (empty()) {
+        #ifdef _DEBUG
+        throw std::out_of_range("LLQueue is empty.");
+        #endif // _DEBUG
+        return Type();
+    }
+    Type returnValue = m_list.getHead();
+    m_list.removeHead();
+    return returnValue;
+}

@@ -45,6 +45,9 @@
     <ClInclude Include="includes\LLQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\PriorityQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="includes\includes.cpp">

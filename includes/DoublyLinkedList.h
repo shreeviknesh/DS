@@ -69,11 +69,8 @@ public:
 	Node* next;
 	Node* prev;
 
-	Node()
-		: value(Type()), next(nullptr), prev(nullptr) {}
-	
-	Node(Type value_, Node* next_ = nullptr, Node* prev_ = nullptr)
-		: value(value_), next(next_), prev(prev_) {}
+	Node() : value(Type()), next(nullptr), prev(nullptr) {}
+	Node(Type value_, Node* next_ = nullptr, Node* prev_ = nullptr) : value(value_), next(next_), prev(prev_) {}
 };
 
 template <typename Type>
