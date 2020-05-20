@@ -23,7 +23,7 @@ Given below is a list of Data Structures that are implemented (and soon to be im
 |<img src="https://img.shields.io/badge/-Yes-2ECC40">|Array Implementation of Queue|`ArrayQueue.h`|
 |<img src="https://img.shields.io/badge/-Yes-2ECC40">|Linked List Implementation of Queue|`LLQueue.h`|
 |<img src="https://img.shields.io/badge/-Yes-2ECC40">|Priority Queue|`PriorityQueue.h`|
-|<img src="https://img.shields.io/badge/-No-FF4136">|Double Ended Queue|`Deque.h`|
+|<img src="https://img.shields.io/badge/-Yes-2ECC40">|Double Ended Queue|`Deque.h`|
 |<img src="https://img.shields.io/badge/-No-FF4136">|Binary Search Tree|`BST.h`|
 
 Usage
