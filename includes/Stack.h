@@ -85,7 +85,12 @@ Stack<Type>::Stack(const Stack<Type>& s) {
 
 template <typename Type>
 Stack<Type>& Stack<Type>::operator = (const Stack<Type>& s) {
-	Stack(s);
+	if (s.m_top == nullptr) {
+		m_top = nullptr;
+	}
+	else {
+		*m_top = *(s.m_top);
+	}
 	return *this;
 }
 
