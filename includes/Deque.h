@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_DEQUE_H
+#define DS_DEQUE_H
+
 #include <initializer_list>
 #include <stdexcept>
 #include "DoublyLinkedList.h"
@@ -76,3 +78,5 @@ Type Deque<Type>::pop_front() {
     m_list.removeHead();
     return value;
 }
+
+#endif

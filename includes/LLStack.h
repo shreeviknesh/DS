@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_LL_STACK_H
+#define DS_LL_STACK_H
+
 #include "LinkedList.h"
 
  // LinkedList Implementation of Stack
@@ -56,3 +58,5 @@ Type LLStack<Type>::pop() {
         return temp;
     }
 }
+
+#endif

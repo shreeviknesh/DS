@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_DOUBLY_LINKED_LIST_H
+#define DS_DOUBLY_LINKED_LIST_H
+
 #include <initializer_list>
 #include <stdexcept>
 
@@ -279,3 +281,5 @@ void DoublyLinkedList<Type>::clear() {
 		removeHead();
 	}
 }
+
+#endif

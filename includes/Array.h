@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_ARRAY_H
+#define DS_ARRAY_H
+
 #include <initializer_list>
 #include <stdexcept>
 #include <memory>
@@ -187,3 +189,5 @@ template <typename Type, size_t N>
 bool operator >= (const Array<Type, N>& array1, const Array<Type, N>& array2) {
     return !(array1 < array2);
 }
+
+#endif

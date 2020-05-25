@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_STACK_H
+#define DS_STACK_H
+
 #include <stdexcept>
 
 // Implementation of Stack
@@ -131,3 +133,5 @@ void Stack<Type>::clear() {
 		pop();
 	}
 }
+
+#endif

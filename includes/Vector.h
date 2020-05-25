@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_VECTOR_H
+#define DS_VECTOR_H
+
 #include <initializer_list>
 #include <stdexcept>
 #include <memory>
@@ -440,3 +442,5 @@ inline void Vector<Type>::swap(Vector<Type>& other) {
     m_size = other.m_size;
     other.m_size = temp;
 }
+
+#endif

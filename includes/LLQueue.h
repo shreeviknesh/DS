@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_LL_QUEUE_H
+#define DS_LL_QUEUE_H
+
 #include "DoublyLinkedList.h"
 
 template <typename Type>
@@ -58,3 +60,5 @@ Type LLQueue<Type>::pop() {
     m_list.removeHead();
     return returnValue;
 }
+
+#endif

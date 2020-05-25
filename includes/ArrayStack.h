@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_ARRAY_STACK_H
+#define DS_ARRAY_STACK_H
+
 #include <stdexcept>
 
 // Array implementation of Stack 
@@ -114,3 +116,5 @@ Type ArrayStack<Type, MaxSize>::pop() {
 	m_top--;
 	return m_data[m_top + 1];
 }
+
+#endif

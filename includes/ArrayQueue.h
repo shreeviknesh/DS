@@ -24,7 +24,9 @@
  * SOFTWARE.
 */
 
-#pragma once
+#ifndef DS_ARRAY_QUEUE_H
+#define DS_ARRAY_QUEUE_H
+
 #include <stdexcept>
 
 template<typename Type, size_t MaxSize = 32>
@@ -80,3 +82,5 @@ Type ArrayQueue<Type, MaxSize>::pop() {
     m_back--;
     return returnValue;
 }
+
+#endif

@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_PRIORITY_QUEUE_H
+#define DS_PRIORITY_QUEUE_H
+
 #include <stdexcept>
 #include "DoublyLinkedList.h"
 
@@ -67,3 +69,5 @@ Type PriorityQueue<Type>::pop() {
     m_list.removeTail();
     return returnValue;
 }
+
+#endif

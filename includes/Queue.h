@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_QUEUE_H
+#define DS_QUEUE_H
+
 #include <initializer_list>
 
 template <typename Type>
@@ -144,3 +146,5 @@ void Queue<Type>::clear() {
         pop();
     }
 }
+
+#endif

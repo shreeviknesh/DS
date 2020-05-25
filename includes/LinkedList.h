@@ -24,7 +24,9 @@
  * SOFTWARE.
  */
 
-#pragma once
+#ifndef DS_LINKED_LIST_H
+#define DS_LINKED_LIST_H
+
 #include <initializer_list>
 #include <stdexcept>
 
@@ -267,3 +269,5 @@ void LinkedList<Type>::reverse() {
 	}
 	m_head = prev;
 }
+
+#endif
