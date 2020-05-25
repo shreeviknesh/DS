@@ -5,6 +5,8 @@ Contents
 ----
 - [The Data Structures Implemented](#data-structures-implemented)
 - [Usage](#usage)
+    - [Visual Studio](#as-part-of-visualstudio-solution)
+    - [Project](#as-part-of-your-project)
 
 Data Structures Implemented
 ----
