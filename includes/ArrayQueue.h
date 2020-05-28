@@ -30,15 +30,16 @@
 #include <stdexcept>
 
 template<typename Type, size_t MaxSize = 32>
-class ArrayQueue {
-public:
+class ArrayQueue
+{
+  public:
     ArrayQueue() : m_back(-1) {}
-    ArrayQueue(const ArrayQueue<Type, MaxSize>& queue);
+    ArrayQueue(const ArrayQueue<Type, MaxSize> &queue);
     ~ArrayQueue() { clear(); }
 
     inline bool empty() const { return (m_back == -1); }
     inline size_t size() const { return (m_back + 1); }
-       
+
     inline Type front() const { return m_data[0]; }
     inline Type back() const { return m_data[m_back]; }
 
@@ -46,13 +47,13 @@ public:
     Type pop();
     void clear() { m_back = -1; }
 
-private:
+  private:
     Type m_data[MaxSize];
     size_t m_back;
 };
 
 template<typename Type, size_t MaxSize>
-ArrayQueue<Type, MaxSize>::ArrayQueue(const ArrayQueue<Type, MaxSize>& queue) {
+ArrayQueue<Type, MaxSize>::ArrayQueue(const ArrayQueue<Type, MaxSize> &queue) {
     for (size_t i = 0; i <= queue.m_back; i++) {
         m_data[i] = queue.m_data[i];
     }
@@ -62,9 +63,9 @@ ArrayQueue<Type, MaxSize>::ArrayQueue(const ArrayQueue<Type, MaxSize>& queue) {
 template<typename Type, size_t MaxSize>
 void ArrayQueue<Type, MaxSize>::push(Type value) {
     if (m_back == MaxSize - 1) {
-        #ifdef _DEBUG
+#ifdef _DEBUG
         throw std::out_of_range("Queue is full.");
-        #endif // _DEBUG
+#endif// _DEBUG
         return;
     }
     m_data[++m_back] = value;

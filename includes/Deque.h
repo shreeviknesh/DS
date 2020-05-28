@@ -31,34 +31,35 @@
 #include <stdexcept>
 #include "DoublyLinkedList.h"
 
-template <typename Type>
-class Deque {
-public:
+template<typename Type>
+class Deque
+{
+  public:
     Deque() { m_list.clear(); }
     Deque(Type values[], size_t size) : m_list(values, size) {}
-    Deque(std::initializer_list<Type> values): m_list(values) {}
+    Deque(std::initializer_list<Type> values) : m_list(values) {}
     ~Deque() { m_list.clear(); }
 
     inline Type front() const { return m_list.getHead(); }
     inline Type back() const { return m_list.getTail(); }
     inline bool empty() const { return m_list.empty(); }
-    
+
     void push_back(const Type value) { m_list.insert(value); }
     void push_front(const Type value) { m_list.unshift(value); }
     Type pop_back();
     Type pop_front();
     void clear() { m_list.clear(); }
 
-private:
+  private:
     DoublyLinkedList<Type> m_list;
 };
 
 template<typename Type>
 inline Type Deque<Type>::pop_back() {
     if (empty()) {
-        #ifdef _DEBUG
+#ifdef _DEBUG
         throw std::out_of_range("Deque is empty");
-        #endif // _DEBUG
+#endif// _DEBUG
         return Type();
     }
     Type value = m_list.getTail();
@@ -69,9 +70,9 @@ inline Type Deque<Type>::pop_back() {
 template<typename Type>
 Type Deque<Type>::pop_front() {
     if (empty()) {
-        #ifdef _DEBUG
+#ifdef _DEBUG
         throw std::out_of_range("Deque is empty");
-        #endif // _DEBUG
+#endif// _DEBUG
         return Type();
     }
     Type value = m_list.getHead();

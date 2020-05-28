@@ -31,11 +31,12 @@
 #include "DoublyLinkedList.h"
 
 /* Naive Implementation of PriorityQueue with DoublyLinkedList */
-template <typename Type>
-class PriorityQueue {
-public:
+template<typename Type>
+class PriorityQueue
+{
+  public:
     PriorityQueue() { m_list.clear(); }
-    PriorityQueue(const PriorityQueue<Type>& llq) = delete;
+    PriorityQueue(const PriorityQueue<Type> &llq) = delete;
     ~PriorityQueue() { clear(); }
 
     // Don't need front() & back() methods
@@ -48,7 +49,7 @@ public:
     Type pop();
     void clear() { m_list.clear(); }
 
-private:
+  private:
     DoublyLinkedList<Type> m_list;
 };
 
@@ -60,9 +61,9 @@ void PriorityQueue<Type>::push(const Type value) {
 template<typename Type>
 Type PriorityQueue<Type>::pop() {
     if (empty()) {
-        #ifdef _DEBUG
+#ifdef _DEBUG
         throw std::out_of_range("PriorityQueue is empty.");
-        #endif // _DEBUG
+#endif// _DEBUG
         return Type();
     }
     Type returnValue = m_list.getTail();

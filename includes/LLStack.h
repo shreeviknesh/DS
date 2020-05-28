@@ -29,12 +29,13 @@
 
 #include "LinkedList.h"
 
- // LinkedList Implementation of Stack
-template <typename Type>
-class LLStack {
-public:
+// LinkedList Implementation of Stack
+template<typename Type>
+class LLStack
+{
+  public:
     LLStack() { m_list.clear(); }
-    LLStack(const LLStack<Type>& lls) : m_list(lls.m_list) {}
+    LLStack(const LLStack<Type> &lls) : m_list(lls.m_list) {}
     ~LLStack() { clear(); }
 
     inline bool empty() const { return m_list.empty(); }
@@ -43,7 +44,7 @@ public:
     Type peek() const { return m_list.get(0); }
     void clear() { m_list.clear(); }
 
-private:
+  private:
     LinkedList<Type> m_list;
 };
 

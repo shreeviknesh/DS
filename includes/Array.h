@@ -31,21 +31,22 @@
 #include <stdexcept>
 #include <memory>
 
-template <typename Type, size_t N>
-class Array {
-public:
+template<typename Type, size_t N>
+class Array
+{
+  public:
     Array();
-    Array(Type* data, size_t size);
+    Array(Type *data, size_t size);
     Array(std::initializer_list<Type> data);
-    Array(const Array<Type, N>& array);
+    Array(const Array<Type, N> &array);
     ~Array();
-    Array& operator = (const Array&);
+    Array &operator=(const Array &);
 
-    Type& at(size_t pos) const;
-    Type& operator [] (size_t pos) const { at(pos); }
-    Type& front() const { return at(0); }
-    Type& back() const { return at(m_last); }
-    Type* data() const { return m_data.get(); }
+    Type &at(size_t pos) const;
+    Type &operator[](size_t pos) const { at(pos); }
+    Type &front() const { return at(0); }
+    Type &back() const { return at(m_last); }
+    Type *data() const { return m_data.get(); }
 
     size_t empty() const { return m_last == -1; }
     size_t size() const { return m_last + 1; }
@@ -54,19 +55,19 @@ public:
     void fill(Type value) noexcept;
     void swap(size_t pos1, size_t pos2) noexcept;
 
-private:
+  private:
     std::unique_ptr<Type[]> m_data;
     size_t m_last;
 };
 
-template <typename Type, size_t N>
+template<typename Type, size_t N>
 Array<Type, N>::Array() : m_last(-1) {
     m_data = std::make_unique<Type[]>(N);
     static_assert(N > 0, "Array size cannot be 0 or negatize");
 }
 
-template <typename Type, size_t N>
-Array<Type, N>::Array(Type* data, size_t size) {
+template<typename Type, size_t N>
+Array<Type, N>::Array(Type *data, size_t size) {
     m_data = std::make_unique<Type[]>(N);
     m_last = 0;
     while (m_last < size && m_last < N) {
@@ -76,7 +77,7 @@ Array<Type, N>::Array(Type* data, size_t size) {
     m_last--;
 }
 
-template <typename Type, size_t N>
+template<typename Type, size_t N>
 Array<Type, N>::Array(std::initializer_list<Type> data) {
     m_data = std::make_unique<Type[]>(N);
     m_last = 0;
@@ -86,8 +87,8 @@ Array<Type, N>::Array(std::initializer_list<Type> data) {
     m_last--;
 }
 
-template <typename Type, size_t N>
-Array<Type, N>::Array(const Array<Type, N>& array) {
+template<typename Type, size_t N>
+Array<Type, N>::Array(const Array<Type, N> &array) {
     m_data = std::make_unique<Type[]>(N);
     m_last = 0;
     while (m_last <= array.m_last) {
@@ -97,14 +98,14 @@ Array<Type, N>::Array(const Array<Type, N>& array) {
     m_last--;
 }
 
-template <typename Type, size_t N>
+template<typename Type, size_t N>
 Array<Type, N>::~Array() {
     m_data.reset();
     m_last = -1;
 }
 
-template <typename Type, size_t N>
-Array<Type, N>& Array<Type, N>::operator = (const Array& array) {
+template<typename Type, size_t N>
+Array<Type, N> &Array<Type, N>::operator=(const Array &array) {
     m_data = std::make_unique<Type[]>(N);
     m_last = 0;
     while (m_last <= array.m_last) {
@@ -114,16 +115,16 @@ Array<Type, N>& Array<Type, N>::operator = (const Array& array) {
     return *this;
 }
 
-template <typename Type, size_t N>
-Type& Array<Type, N>::at(size_t pos) const {
+template<typename Type, size_t N>
+Type &Array<Type, N>::at(size_t pos) const {
     if (m_last == -1 || pos < 0 || pos > m_last) {
-        #ifdef _DEBUG
+#ifdef _DEBUG
         throw std::out_of_range("Array index out of bounds");
-        #endif // _DEBUG
+#endif// _DEBUG
     }
     return m_data[pos];
 }
-template <typename Type, size_t N>
+template<typename Type, size_t N>
 void Array<Type, N>::fill(Type value) noexcept {
     m_last = 0;
     while (m_last < N) {
@@ -132,15 +133,15 @@ void Array<Type, N>::fill(Type value) noexcept {
     m_last = N - 1;
 }
 
-template <typename Type, size_t N>
+template<typename Type, size_t N>
 void Array<Type, N>::swap(size_t pos1, size_t pos2) noexcept {
     Type temp = at(pos1);
     at(pos1) = at(pos2);
     at(pos2) = temp;
 }
 
-template <typename Type, size_t N>
-bool operator == (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+template<typename Type, size_t N>
+bool operator==(const Array<Type, N> &array1, const Array<Type, N> &array2) {
     for (size_t i = 0; i < array1.size(); i++) {
         if (array1[i] != array2[i]) {
             return false;
@@ -149,13 +150,13 @@ bool operator == (const Array<Type, N>& array1, const Array<Type, N>& array2) {
     return true;
 }
 
-template <typename Type, size_t N>
-bool operator != (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+template<typename Type, size_t N>
+bool operator!=(const Array<Type, N> &array1, const Array<Type, N> &array2) {
     return !(array1 == array2);
 }
 
-template <typename Type, size_t N>
-bool operator < (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+template<typename Type, size_t N>
+bool operator<(const Array<Type, N> &array1, const Array<Type, N> &array2) {
     for (size_t i = 0; i < array1.size(); i++) {
         if (array1[i] > array2[i]) {
             return false;
@@ -167,8 +168,8 @@ bool operator < (const Array<Type, N>& array1, const Array<Type, N>& array2) {
     return false;
 }
 
-template <typename Type, size_t N>
-bool operator <= (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+template<typename Type, size_t N>
+bool operator<=(const Array<Type, N> &array1, const Array<Type, N> &array2) {
     for (size_t i = 0; i < array1.size(); i++) {
         if (array1[i] > array2[i]) {
             return false;
@@ -180,13 +181,13 @@ bool operator <= (const Array<Type, N>& array1, const Array<Type, N>& array2) {
     return true;
 }
 
-template <typename Type, size_t N>
-bool operator > (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+template<typename Type, size_t N>
+bool operator>(const Array<Type, N> &array1, const Array<Type, N> &array2) {
     return !(array1 <= array2);
 }
 
-template <typename Type, size_t N>
-bool operator >= (const Array<Type, N>& array1, const Array<Type, N>& array2) {
+template<typename Type, size_t N>
+bool operator>=(const Array<Type, N> &array1, const Array<Type, N> &array2) {
     return !(array1 < array2);
 }
 

@@ -29,92 +29,93 @@
 
 #include <stdexcept>
 
-// Array implementation of Stack 
-template <typename Type, size_t MaxSize = 32>
-class ArrayStack {
-public:
-	ArrayStack();
-	ArrayStack(const ArrayStack<Type, MaxSize>& as);
-	ArrayStack<Type, MaxSize>& operator = (const ArrayStack<Type, MaxSize>& as);
-	~ArrayStack();
+// Array implementation of Stack
+template<typename Type, size_t MaxSize = 32>
+class ArrayStack
+{
+  public:
+    ArrayStack();
+    ArrayStack(const ArrayStack<Type, MaxSize> &as);
+    ArrayStack<Type, MaxSize> &operator=(const ArrayStack<Type, MaxSize> &as);
+    ~ArrayStack();
 
-	// Check if the stack is empty
-	inline bool empty() const { return (m_top == -1); }
+    // Check if the stack is empty
+    inline bool empty() const { return (m_top == -1); }
 
-	// Push a value to the top of the ArrayStack
-	void push(const Type value);
+    // Push a value to the top of the ArrayStack
+    void push(const Type value);
 
-	// Pop the top value of the ArrayStack
-	Type pop();
-	
-	// Get the top value of the ArrayStack
-	inline Type peek() const { return m_data[m_top]; }
+    // Pop the top value of the ArrayStack
+    Type pop();
 
-	// Get the MaxSize of the ArrayStack
-	inline size_t size() const { return MaxSize; }
+    // Get the top value of the ArrayStack
+    inline Type peek() const { return m_data[m_top]; }
 
-private:
-	size_t m_top;
-	Type m_data[MaxSize];
+    // Get the MaxSize of the ArrayStack
+    inline size_t size() const { return MaxSize; }
+
+  private:
+    size_t m_top;
+    Type m_data[MaxSize];
 };
 
-template <typename Type, size_t MaxSize>
+template<typename Type, size_t MaxSize>
 ArrayStack<Type, MaxSize>::ArrayStack() : m_top(-1) {
-	static_assert(MaxSize > 0, "ArrayStack MaxSize has to be positive non-zero integer");
+    static_assert(MaxSize > 0, "ArrayStack MaxSize has to be positive non-zero integer");
 }
 
-template <typename Type, size_t MaxSize>
-ArrayStack<Type, MaxSize>::ArrayStack(const ArrayStack<Type, MaxSize>& as) {
-	if (as.m_top > MaxSize) {
-		#ifdef _DEBUG
-			throw std::out_of_range("Top cannot be greater than MaxSize");
-		#endif
-		ArrayStack();
-	}
-	m_top = as.m_top;
-	for (size_t i = 0; i <= as.m_top; i++) {
-		m_data[i] = as.m_data[i];
-	}
+template<typename Type, size_t MaxSize>
+ArrayStack<Type, MaxSize>::ArrayStack(const ArrayStack<Type, MaxSize> &as) {
+    if (as.m_top > MaxSize) {
+#ifdef _DEBUG
+        throw std::out_of_range("Top cannot be greater than MaxSize");
+#endif
+        ArrayStack();
+    }
+    m_top = as.m_top;
+    for (size_t i = 0; i <= as.m_top; i++) {
+        m_data[i] = as.m_data[i];
+    }
 }
 
 
-template <typename Type, size_t MaxSize>
-ArrayStack<Type, MaxSize>& ArrayStack<Type, MaxSize>::operator =(const ArrayStack<Type, MaxSize>& as) {
-	m_top = as.m_top;
-	for (size_t i = 0; i <= as.m_top; i++) {
-		m_data[i] = as.m_data[i];
-	}
-	return *this;
+template<typename Type, size_t MaxSize>
+ArrayStack<Type, MaxSize> &ArrayStack<Type, MaxSize>::operator=(const ArrayStack<Type, MaxSize> &as) {
+    m_top = as.m_top;
+    for (size_t i = 0; i <= as.m_top; i++) {
+        m_data[i] = as.m_data[i];
+    }
+    return *this;
 }
 
-template <typename Type, size_t MaxSize>
+template<typename Type, size_t MaxSize>
 ArrayStack<Type, MaxSize>::~ArrayStack() {
-	while (m_top > 0) {
-		pop();
-	}
+    while (m_top > 0) {
+        pop();
+    }
 }
 
-template <typename Type, size_t MaxSize>
+template<typename Type, size_t MaxSize>
 void ArrayStack<Type, MaxSize>::push(const Type value) {
-	if (m_top == MaxSize - 1) {
-		#ifdef _DEBUG
-		throw std::out_of_range("Cannot push: ArrayStack MaxSize exceeded");
-		#endif
-		return;
-	}
-	m_data[++m_top] = value;
+    if (m_top == MaxSize - 1) {
+#ifdef _DEBUG
+        throw std::out_of_range("Cannot push: ArrayStack MaxSize exceeded");
+#endif
+        return;
+    }
+    m_data[++m_top] = value;
 }
 
-template <typename Type, size_t MaxSize>
+template<typename Type, size_t MaxSize>
 Type ArrayStack<Type, MaxSize>::pop() {
-	if (m_top < 0) {
-		#ifdef _DEBUG
-		throw std::out_of_range("Cannot pop: ArrayStack is empty");
-		#endif
-		return Type();
-	}
-	m_top--;
-	return m_data[m_top + 1];
+    if (m_top < 0) {
+#ifdef _DEBUG
+        throw std::out_of_range("Cannot pop: ArrayStack is empty");
+#endif
+        return Type();
+    }
+    m_top--;
+    return m_data[m_top + 1];
 }
 
 #endif

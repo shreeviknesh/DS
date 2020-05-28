@@ -29,11 +29,12 @@
 
 #include "DoublyLinkedList.h"
 
-template <typename Type>
-class LLQueue {
-public:
+template<typename Type>
+class LLQueue
+{
+  public:
     LLQueue() { m_list.clear(); }
-    LLQueue(const LLQueue<Type>& llq) = delete;
+    LLQueue(const LLQueue<Type> &llq) = delete;
     ~LLQueue() { clear(); }
 
     inline Type front() const { return m_list.getHead(); }
@@ -44,16 +45,16 @@ public:
     Type pop();
     void clear() { m_list.clear(); }
 
-private:
+  private:
     DoublyLinkedList<Type> m_list;
 };
 
 template<typename Type>
 Type LLQueue<Type>::pop() {
     if (empty()) {
-        #ifdef _DEBUG
+#ifdef _DEBUG
         throw std::out_of_range("LLQueue is empty.");
-        #endif // _DEBUG
+#endif// _DEBUG
         return Type();
     }
     Type returnValue = m_list.getHead();
