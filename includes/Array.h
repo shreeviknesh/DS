@@ -160,8 +160,7 @@ bool operator<(const Array<Type, N>& array1, const Array<Type, N>& array2) {
     for (size_t i = 0; i < array1.size(); i++) {
         if (array1[i] > array2[i]) {
             return false;
-        }
-        else if (array1[i] < array2[i]) {
+        } else if (array1[i] < array2[i]) {
             return true;
         }
     }
@@ -173,8 +172,7 @@ bool operator<=(const Array<Type, N>& array1, const Array<Type, N>& array2) {
     for (size_t i = 0; i < array1.size(); i++) {
         if (array1[i] > array2[i]) {
             return false;
-        }
-        else if (array1[i] < array2[i]) {
+        } else if (array1[i] < array2[i]) {
             return true;
         }
     }

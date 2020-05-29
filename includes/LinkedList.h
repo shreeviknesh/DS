@@ -94,8 +94,7 @@ template<typename Type>
 LinkedList<Type>::LinkedList(Node* head) {
     if (head == nullptr) {
         m_head = nullptr;
-    }
-    else {
+    } else {
         *m_head = *head;
     }
 }
@@ -118,8 +117,7 @@ template<typename Type>
 LinkedList<Type>::LinkedList(const LinkedList<Type>& ll) {
     if (ll.m_head == nullptr) {
         m_head = nullptr;
-    }
-    else {
+    } else {
         if (ll.m_head == nullptr) {
             m_head = nullptr;
             return;

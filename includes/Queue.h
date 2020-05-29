@@ -89,8 +89,7 @@ Queue<Type>::Queue(std::initializer_list<Type> values) {
         m_front = nullptr;
         m_rear = nullptr;
         m_size = 0;
-    }
-    else {
+    } else {
         for (Type val : values) {
             push(val);
         }
@@ -109,8 +108,7 @@ void Queue<Type>::push(const Type value) {
         m_front = newNode;
         m_rear = newNode;
         m_size = 1;
-    }
-    else {
+    } else {
         Node* newNode = new Node(value, nullptr, m_rear);
         m_rear->next = newNode;
         m_rear = newNode;
@@ -122,8 +120,7 @@ template<typename Type>
 Type Queue<Type>::pop() {
     if (m_size == 0) {
         return Type();
-    }
-    else if (m_size == 1) {
+    } else if (m_size == 1) {
         Node* toDelete = m_front;
         m_front = nullptr;
         m_rear = nullptr;
@@ -131,8 +128,7 @@ Type Queue<Type>::pop() {
         Type val = toDelete->value;
         delete toDelete;
         return val;
-    }
-    else {
+    } else {
         Node* toDelete = m_front;
         Type val = m_front->value;
         m_front = m_front->next;

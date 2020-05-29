@@ -200,8 +200,7 @@ inline void Vector<Type>::insert(size_t pos, const Type& value) {
         }
         m_size++;
         m_last = m_size - 1;
-    }
-    else {
+    } else {
         for (size_t i = m_last; i >= pos; i--) {
             m_data[i + 1] = m_data[i];
         }
@@ -233,8 +232,7 @@ void Vector<Type>::insert(size_t pos, const Vector<Type>& vector) {
         }
         m_size += vector_size;
         m_last = m_size - 1;
-    }
-    else {
+    } else {
         Type* data = new Type[m_last + 1];
         for (size_t i = 0; i <= m_last; i++) {
             data[i] = m_data.get()[i];
@@ -274,8 +272,7 @@ void Vector<Type>::insert(size_t pos, std::initializer_list<Type> values) {
         }
         m_size += list_size;
         m_last += list_size;
-    }
-    else {
+    } else {
         Type* data = new Type[m_last + 1];
         for (size_t i = 0; i <= m_last; i++) {
             data[i] = m_data.get()[i];

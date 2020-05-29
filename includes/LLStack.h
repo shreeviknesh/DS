@@ -52,8 +52,7 @@ template<typename Type>
 Type LLStack<Type>::pop() {
     if (empty()) {
         return Type();
-    }
-    else {
+    } else {
         Type temp = m_list.get(0);
         m_list.remove();
         return temp;
