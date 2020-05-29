@@ -34,7 +34,7 @@ class LLQueue
 {
   public:
     LLQueue() { m_list.clear(); }
-    LLQueue(const LLQueue<Type> &llq) = delete;
+    LLQueue(const LLQueue<Type>& llq) = delete;
     ~LLQueue() { clear(); }
 
     inline Type front() const { return m_list.getHead(); }

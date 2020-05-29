@@ -36,7 +36,7 @@ class PriorityQueue
 {
   public:
     PriorityQueue() { m_list.clear(); }
-    PriorityQueue(const PriorityQueue<Type> &llq) = delete;
+    PriorityQueue(const PriorityQueue<Type>& llq) = delete;
     ~PriorityQueue() { clear(); }
 
     // Don't need front() & back() methods

@@ -35,8 +35,8 @@ class ArrayStack
 {
   public:
     ArrayStack();
-    ArrayStack(const ArrayStack<Type, MaxSize> &as);
-    ArrayStack<Type, MaxSize> &operator=(const ArrayStack<Type, MaxSize> &as);
+    ArrayStack(const ArrayStack<Type, MaxSize>& as);
+    ArrayStack<Type, MaxSize>& operator=(const ArrayStack<Type, MaxSize>& as);
     ~ArrayStack();
 
     // Check if the stack is empty
@@ -65,7 +65,7 @@ ArrayStack<Type, MaxSize>::ArrayStack() : m_top(-1) {
 }
 
 template<typename Type, size_t MaxSize>
-ArrayStack<Type, MaxSize>::ArrayStack(const ArrayStack<Type, MaxSize> &as) {
+ArrayStack<Type, MaxSize>::ArrayStack(const ArrayStack<Type, MaxSize>& as) {
     if (as.m_top > MaxSize) {
 #ifdef _DEBUG
         throw std::out_of_range("Top cannot be greater than MaxSize");
@@ -80,7 +80,7 @@ ArrayStack<Type, MaxSize>::ArrayStack(const ArrayStack<Type, MaxSize> &as) {
 
 
 template<typename Type, size_t MaxSize>
-ArrayStack<Type, MaxSize> &ArrayStack<Type, MaxSize>::operator=(const ArrayStack<Type, MaxSize> &as) {
+ArrayStack<Type, MaxSize>& ArrayStack<Type, MaxSize>::operator=(const ArrayStack<Type, MaxSize>& as) {
     m_top = as.m_top;
     for (size_t i = 0; i <= as.m_top; i++) {
         m_data[i] = as.m_data[i];

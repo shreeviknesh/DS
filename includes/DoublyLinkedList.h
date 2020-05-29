@@ -42,13 +42,13 @@ class DoublyLinkedList
     ~DoublyLinkedList() { clear(); }
 
     inline bool empty() const { return (m_head == nullptr); }
-    inline Node *head() const { return m_head; }
-    inline Node *tail() const { return m_tail; }
+    inline Node* head() const { return m_head; }
+    inline Node* tail() const { return m_tail; }
 
     void insert(Type value);
     void unshift(Type value);
-    void insertBefore(Node *node, Type value);
-    void insertAfter(Node *node, Type value);
+    void insertBefore(Node* node, Type value);
+    void insertAfter(Node* node, Type value);
 
     // Inserts a value such that the list is in ascending order
     void priorityInsert(Type value);
@@ -58,14 +58,14 @@ class DoublyLinkedList
 
     bool removeHead();
     bool removeTail();
-    bool remove(DoublyLinkedList<Type>::Node *node);
+    bool remove(DoublyLinkedList<Type>::Node* node);
     bool remove(Type value);
 
     void clear();
 
   private:
-    Node *m_head;
-    Node *m_tail;
+    Node* m_head;
+    Node* m_tail;
 };
 
 template<typename Type>
@@ -73,11 +73,11 @@ class DoublyLinkedList<Type>::Node
 {
   public:
     Type value;
-    Node *next;
-    Node *prev;
+    Node* next;
+    Node* prev;
 
     Node() : value(Type()), next(nullptr), prev(nullptr) {}
-    Node(Type value_, Node *next_ = nullptr, Node *prev_ = nullptr) : value(value_), next(next_), prev(prev_) {}
+    Node(Type value_, Node* next_ = nullptr, Node* prev_ = nullptr) : value(value_), next(next_), prev(prev_) {}
 };
 
 template<typename Type>
@@ -119,8 +119,8 @@ void DoublyLinkedList<Type>::unshift(Type value) {
 
 
 template<typename Type>
-void DoublyLinkedList<Type>::insertBefore(Node *node, Type value) {
-    Node *newNode = new Node(value);
+void DoublyLinkedList<Type>::insertBefore(Node* node, Type value) {
+    Node* newNode = new Node(value);
     if (node == nullptr) {
 #ifdef _DEBUG
         throw std::invalid_argument("Cannot insert before node as DoublyLinkedList is empty");
@@ -140,8 +140,8 @@ void DoublyLinkedList<Type>::insertBefore(Node *node, Type value) {
 }
 
 template<typename Type>
-void DoublyLinkedList<Type>::insertAfter(Node *node, Type value) {
-    Node *newNode = new Node(value);
+void DoublyLinkedList<Type>::insertAfter(Node* node, Type value) {
+    Node* newNode = new Node(value);
     if (node == nullptr) {
 #ifdef _DEBUG
         throw std::invalid_argument("Cannot insert after node as DoublyLinkedList is empty");
@@ -166,7 +166,7 @@ void DoublyLinkedList<Type>::priorityInsert(Type value) {
         unshift(value);
         return;
     }
-    Node *temp = m_head;
+    Node* temp = m_head;
     while (temp != nullptr && temp->value < value) {
         temp = temp->next;
     }
@@ -212,7 +212,7 @@ bool DoublyLinkedList<Type>::removeHead() {
         m_head = m_tail = nullptr;
         return true;
     }
-    Node *toDelete = m_head;
+    Node* toDelete = m_head;
     m_head = m_head->next;
     if (m_head != nullptr) {
         m_head->prev = nullptr;
@@ -234,7 +234,7 @@ bool DoublyLinkedList<Type>::removeTail() {
         m_head = m_tail = nullptr;
         return true;
     }
-    Node *toDelete = m_tail;
+    Node* toDelete = m_tail;
     m_tail = m_tail->prev;
     if (m_tail != nullptr) {
         m_tail->next = nullptr;
@@ -244,15 +244,15 @@ bool DoublyLinkedList<Type>::removeTail() {
 }
 
 template<typename Type>
-bool DoublyLinkedList<Type>::remove(DoublyLinkedList<Type>::Node *node) {
+bool DoublyLinkedList<Type>::remove(DoublyLinkedList<Type>::Node* node) {
     if (node->prev == nullptr) {
         return removeHead();
     }
     if (node->next == nullptr) {
         return removeTail();
     }
-    Node *prev = node->prev;
-    Node *next = node->next;
+    Node* prev = node->prev;
+    Node* next = node->next;
     prev->next = next;
     next->prev = prev;
     delete node;
@@ -267,7 +267,7 @@ bool DoublyLinkedList<Type>::remove(Type value) {
 #endif
         return false;
     }
-    Node *current = m_head;
+    Node* current = m_head;
     while (current != nullptr) {
         if (current->value == value) {
             return remove(current);

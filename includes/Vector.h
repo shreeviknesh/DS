@@ -37,14 +37,14 @@ class Vector
   public:
     Vector();
     Vector(size_t size);
-    Vector(size_t size, Type *values);
+    Vector(size_t size, Type* values);
     Vector(std::initializer_list<Type> values);
-    Vector(const Vector<Type> &vector);
+    Vector(const Vector<Type>& vector);
     ~Vector();
-    Vector<Type> &operator=(const Vector<Type> &vector);
+    Vector<Type>& operator=(const Vector<Type>& vector);
 
-    Type &get(size_t pos) const;
-    Type &operator[](size_t pos) const { return get(pos); }
+    Type& get(size_t pos) const;
+    Type& operator[](size_t pos) const { return get(pos); }
     Type at(size_t pos) const { return get(pos); }
 
     size_t size() const noexcept { return m_last + 1; }
@@ -54,24 +54,24 @@ class Vector
     void shrink_to_fit();
 
     void clear() noexcept;
-    void insert(size_t pos, const Type &value);
-    void insert(size_t pos, const Vector<Type> &values);
+    void insert(size_t pos, const Type& value);
+    void insert(size_t pos, const Vector<Type>& values);
     void insert(size_t pos, std::initializer_list<Type> values);
     void erase(size_t pos);
     void erase(size_t pos1, size_t pos2);
-    void push_back(const Type &value);
+    void push_back(const Type& value);
     void pop_back() { m_last--; }
     void resize(size_t targetSize);// shrink or expand
     void resize(size_t targetSize, Type value);// only expand
     void swap(size_t pos1, size_t pos2);
-    void swap(Vector<Type> &other);
+    void swap(Vector<Type>& other);
 
-    void assign(size_t count, const Type &value);
+    void assign(size_t count, const Type& value);
     void assign(std::initializer_list<Type> values);
 
     Type front() const;
     Type back() const;
-    Type *data() const noexcept { return m_data.get(); }
+    Type* data() const noexcept { return m_data.get(); }
 
 
   private:
@@ -89,7 +89,7 @@ inline Vector<Type>::Vector(size_t size) : m_size(size), m_last(-1) {
 }
 
 template<typename Type>
-Vector<Type>::Vector(size_t size, Type *values) : m_size(size) {
+Vector<Type>::Vector(size_t size, Type* values) : m_size(size) {
     m_data = std::make_unique<Type[]>(m_size);
     for (m_last = 0; m_last < size; m_last++) {
         m_data[m_last] = values[m_last];
@@ -108,7 +108,7 @@ Vector<Type>::Vector(std::initializer_list<Type> values) {
 }
 
 template<typename Type>
-Vector<Type>::Vector(const Vector<Type> &vector) {
+Vector<Type>::Vector(const Vector<Type>& vector) {
     m_size = vector.m_size;
     m_data = std::make_unique<Type[]>(m_size);
     m_last = vector.m_last;
@@ -123,7 +123,7 @@ inline Vector<Type>::~Vector() {
 }
 
 template<typename Type>
-Vector<Type> &Vector<Type>::operator=(const Vector<Type> &vector) {
+Vector<Type>& Vector<Type>::operator=(const Vector<Type>& vector) {
     clear();
     m_size = vector.m_size;
     m_data = std::make_unique<Type[]>(m_size);
@@ -135,7 +135,7 @@ Vector<Type> &Vector<Type>::operator=(const Vector<Type> &vector) {
 }
 
 template<typename Type>
-Type &Vector<Type>::get(size_t pos) const {
+Type& Vector<Type>::get(size_t pos) const {
     if (pos < 0 || pos > m_last) {
 #ifdef _DEBUG
         throw std::out_of_range("Vector index out of bounds");
@@ -151,7 +151,7 @@ void Vector<Type>::reserve(size_t size) {
         m_data = std::make_unique<Type[]>(size);
         return;
     }
-    Type *values = m_data.release();
+    Type* values = m_data.release();
     m_data = std::make_unique<Type[]>(size);
     m_size = size;
     for (size_t i = 0; i <= m_last; i++) {
@@ -164,7 +164,7 @@ void Vector<Type>::shrink_to_fit() {
     if (m_last == m_size - 1) {
         return;
     }
-    Type *values = m_data.release();
+    Type* values = m_data.release();
     m_data = std::make_unique<int[]>(m_last + 1);
     for (size_t i = 0; i <= m_last; i++) {
         m_data[i] = values[i];
@@ -182,7 +182,7 @@ inline void Vector<Type>::clear() noexcept {
 }
 
 template<typename Type>
-inline void Vector<Type>::insert(size_t pos, const Type &value) {
+inline void Vector<Type>::insert(size_t pos, const Type& value) {
     if (pos < 0 || pos > m_last) {
 #ifdef _DEBUG
         throw std::out_of_range("Vector index out of bounds");
@@ -190,7 +190,7 @@ inline void Vector<Type>::insert(size_t pos, const Type &value) {
         return;
     }
     if (m_last == m_size - 1) {
-        Type *values = m_data.release();
+        Type* values = m_data.release();
         m_data = std::make_unique<Type[]>(m_size + 1);
         for (size_t i = 0; i < pos; i++) {
             m_data[i] = values[i];
@@ -211,7 +211,7 @@ inline void Vector<Type>::insert(size_t pos, const Type &value) {
 }
 
 template<typename Type>
-void Vector<Type>::insert(size_t pos, const Vector<Type> &vector) {
+void Vector<Type>::insert(size_t pos, const Vector<Type>& vector) {
     if (pos < 0 || pos > m_last + 1) {
 #ifdef _DEBUG
         throw std::out_of_range("Vector index out of range");
@@ -220,7 +220,7 @@ void Vector<Type>::insert(size_t pos, const Vector<Type> &vector) {
     }
     size_t vector_size = vector.size();
     if (m_last + vector_size >= m_size) {
-        Type *values = m_data.release();
+        Type* values = m_data.release();
         m_data = std::make_unique<int[]>(m_size + vector_size);
         for (size_t i = 0; i < pos; i++) {
             m_data[i] = values[i];
@@ -235,7 +235,7 @@ void Vector<Type>::insert(size_t pos, const Vector<Type> &vector) {
         m_last = m_size - 1;
     }
     else {
-        Type *data = new Type[m_last + 1];
+        Type* data = new Type[m_last + 1];
         for (size_t i = 0; i <= m_last; i++) {
             data[i] = m_data.get()[i];
         }
@@ -260,7 +260,7 @@ void Vector<Type>::insert(size_t pos, std::initializer_list<Type> values) {
     }
     size_t list_size = values.size();
     if (m_last + list_size >= m_size) {
-        Type *data = m_data.release();
+        Type* data = m_data.release();
         m_data = std::make_unique<int[]>(m_size + list_size);
         size_t index = 0;
         for (; index < pos; index++) {
@@ -276,7 +276,7 @@ void Vector<Type>::insert(size_t pos, std::initializer_list<Type> values) {
         m_last += list_size;
     }
     else {
-        Type *data = new Type[m_last + 1];
+        Type* data = new Type[m_last + 1];
         for (size_t i = 0; i <= m_last; i++) {
             data[i] = m_data.get()[i];
         }
@@ -318,7 +318,7 @@ void Vector<Type>::erase(size_t pos1, size_t pos2) {
 }
 
 template<typename Type>
-void Vector<Type>::assign(size_t count, const Type &value) {
+void Vector<Type>::assign(size_t count, const Type& value) {
     clear();
     m_size = count;
     m_last = m_size - 1;
@@ -362,9 +362,9 @@ Type Vector<Type>::back() const {
 }
 
 template<typename Type>
-void Vector<Type>::push_back(const Type &value) {
+void Vector<Type>::push_back(const Type& value) {
     if (m_last == m_size - 1) {
-        Type *values = m_data.release();
+        Type* values = m_data.release();
         m_data = std::make_unique<Type[]>(m_size + 1);
         for (size_t i = 0; i < m_size; i++) {
             m_data[i] = values[i];
@@ -432,7 +432,7 @@ void Vector<Type>::swap(size_t pos1, size_t pos2) {
 }
 
 template<typename Type>
-inline void Vector<Type>::swap(Vector<Type> &other) {
+inline void Vector<Type>::swap(Vector<Type>& other) {
     m_data.swap(other.m_data);
 
     size_t temp = m_last;

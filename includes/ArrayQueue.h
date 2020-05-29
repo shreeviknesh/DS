@@ -34,7 +34,7 @@ class ArrayQueue
 {
   public:
     ArrayQueue() : m_back(-1) {}
-    ArrayQueue(const ArrayQueue<Type, MaxSize> &queue);
+    ArrayQueue(const ArrayQueue<Type, MaxSize>& queue);
     ~ArrayQueue() { clear(); }
 
     inline bool empty() const { return (m_back == -1); }
@@ -53,7 +53,7 @@ class ArrayQueue
 };
 
 template<typename Type, size_t MaxSize>
-ArrayQueue<Type, MaxSize>::ArrayQueue(const ArrayQueue<Type, MaxSize> &queue) {
+ArrayQueue<Type, MaxSize>::ArrayQueue(const ArrayQueue<Type, MaxSize>& queue) {
     for (size_t i = 0; i <= queue.m_back; i++) {
         m_data[i] = queue.m_data[i];
     }

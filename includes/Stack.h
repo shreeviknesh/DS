@@ -37,11 +37,11 @@ class Stack
     class Node;
 
     Stack() : m_top(nullptr) {}
-    Stack(Node *top) : m_top(top) {}
-    Stack(const Stack<Type> &s);
+    Stack(Node* top) : m_top(top) {}
+    Stack(const Stack<Type>& s);
     ~Stack() { clear(); }
 
-    Stack<Type> &operator=(const Stack<Type> &s);
+    Stack<Type>& operator=(const Stack<Type>& s);
 
     // Check if the stack is empty
     inline bool empty() const { return (m_top == nullptr); }
@@ -59,26 +59,26 @@ class Stack
     void clear();
 
   private:
-    Node *m_top;
+    Node* m_top;
 };
 
 template<typename Type>
 class Stack<Type>::Node
 {
     Type value;
-    Node *next;
+    Node* next;
 
     Node()
         : value(Type()), next(nullptr) {}
 
-    Node(Type value_, Node *next_ = nullptr)
+    Node(Type value_, Node* next_ = nullptr)
         : value(value_), next(next_) {}
 
     friend class Stack<Type>;
 };
 
 template<typename Type>
-Stack<Type>::Stack(const Stack<Type> &s) {
+Stack<Type>::Stack(const Stack<Type>& s) {
     if (s.m_top == nullptr) {
         m_top = nullptr;
     }
@@ -88,7 +88,7 @@ Stack<Type>::Stack(const Stack<Type> &s) {
 }
 
 template<typename Type>
-Stack<Type> &Stack<Type>::operator=(const Stack<Type> &s) {
+Stack<Type>& Stack<Type>::operator=(const Stack<Type>& s) {
     if (s.m_top == nullptr) {
         m_top = nullptr;
     }
@@ -111,7 +111,7 @@ Type Stack<Type>::pop() {
 #endif
         return Type();
     }
-    Node *temp = m_top;
+    Node* temp = m_top;
     Type value = m_top->value;
     m_top = m_top->next;
     delete temp;
