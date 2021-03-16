@@ -1,5 +1,6 @@
 # Sandbox project
 Sandbox/
+.vscode
 
 # Prerequisites
 *.d
