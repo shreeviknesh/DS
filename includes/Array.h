@@ -43,7 +43,7 @@ class Array
     Array& operator=(const Array&);
 
     Type& at(size_t pos) const;
-    Type& operator[](size_t pos) const { at(pos); }
+    Type& operator[](size_t pos) const { return at(pos); }
     Type& front() const { return at(0); }
     Type& back() const { return at(m_last); }
     Type* data() const { return m_data.get(); }
